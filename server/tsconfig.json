@@ -27,8 +27,10 @@
     "baseUrl": ".",
     "paths": {
       "@Resolvers/*": ["src/Resolvers/*"],
+      "@Services/*": ["src/Services/*"],
       "@UseCases/*": ["src/UseCases/*"],
       "@Graphql/*": ["src/Graphql/*"],
+      "@Plugins/*": ["src/Plugins/*"],
       "@Models/*": ["src/Models/*"],
     },
   }
