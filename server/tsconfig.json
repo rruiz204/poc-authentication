@@ -22,6 +22,14 @@
     // Some stricter flags (disabled by default)
     "noUnusedLocals": false,
     "noUnusedParameters": false,
-    "noPropertyAccessFromIndexSignature": false
+    "noPropertyAccessFromIndexSignature": false,
+    
+    "baseUrl": ".",
+    "paths": {
+      "@Resolvers/*": ["src/Resolvers/*"],
+      "@UseCases/*": ["src/UseCases/*"],
+      "@Graphql/*": ["src/Graphql/*"],
+      "@Models/*": ["src/Models/*"],
+    },
   }
 }
