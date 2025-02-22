@@ -26,12 +26,15 @@
     
     "baseUrl": ".",
     "paths": {
-      "@Resolvers/*": ["src/Resolvers/*"],
-      "@Services/*": ["src/Services/*"],
+      "@Repositories/*": ["src/Infrastructure/Repositories/*"],
+      "@Services/*": ["src/Infrastructure/Services/*"],
+      "@Database/*": ["src/Infrastructure/Database/*"],
+
+      "@Controllers/*": ["src/Presentation/Controllers/*"],
+      "@Routers/*": ["src/Presentation/Routers/*"],
+      
       "@UseCases/*": ["src/UseCases/*"],
       "@Graphql/*": ["src/Graphql/*"],
-      "@Plugins/*": ["src/Plugins/*"],
-      "@Models/*": ["src/Models/*"],
     },
   }
 }
