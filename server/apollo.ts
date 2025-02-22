@@ -2,11 +2,11 @@ import http from "http";
 import { ApolloServer } from "@apollo/server";
 import type { ApolloServerPlugin } from "@apollo/server";
 
-import { ApolloServerPlugingLogging } from "@Plugins/ApolloServerPluginLogging";
+import { ApolloServerPlugingLogging } from "@Graphql/Plugins/ApolloServerPluginLogging";
 import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
 
-import { BookGraphQL } from "@Graphql/BookGraphQL";
-import { BookResolver } from "@Resolvers/BookResolver";
+import { PingGraphQL } from "@Graphql/Schema/PingGraphQL";
+import { PingResolver } from "@Graphql/Resolvers/PingResolver";
 
 export class Apollo {
   private plugins: ApolloServerPlugin[] = [];
@@ -17,8 +17,8 @@ export class Apollo {
   };
 
   public instance: ApolloServer = new ApolloServer({
-    typeDefs: [BookGraphQL],
-    resolvers: [BookResolver],
+    typeDefs: [PingGraphQL],
+    resolvers: [PingResolver],
     plugins: this.plugins,
   });
 
