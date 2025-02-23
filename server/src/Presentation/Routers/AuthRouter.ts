@@ -1,9 +1,13 @@
 import { Router } from "express";
-
 import { AuthController } from "@Controllers/AuthController";
+import { SimpleAuthUseCase } from "@UseCases/Auth/SimpleAuth/SimpleAuthUseCase";
 
-const controller = new AuthController();
+const simpleAuthUseCase = new SimpleAuthUseCase();
+
+const controller = new AuthController(
+  simpleAuthUseCase,
+);
 
 export const AuthRouter = Router();
 
-AuthRouter.get("/ping", controller.ping);
+AuthRouter.post("/login/simple", controller.simple);

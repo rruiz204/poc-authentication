@@ -12,6 +12,7 @@ await apollo.start();
 const bootstrap = new Bootstrap(app);
 bootstrap.addMiddlewares();
 bootstrap.addRouters();
+bootstrap.addExceptionHandler();
 bootstrap.addApollo(apollo.instance);
 
 await new Promise<void>((resolve) => server.listen({ port: 3000 }, resolve));
