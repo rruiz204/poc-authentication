@@ -32,8 +32,8 @@
 
       "@Controllers/*": ["src/Presentation/Controllers/*"],
       "@Routers/*": ["src/Presentation/Routers/*"],
-      
-      "@UseCases/*": ["src/UseCases/*"],
+
+      "@UseCases/*": ["src/Application/UseCases/*"],
       "@Graphql/*": ["src/Graphql/*"],
     },
   }
