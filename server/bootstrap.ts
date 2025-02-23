@@ -1,8 +1,8 @@
 import { json } from "body-parser";
-import type { Express } from "express";
 import { ApolloServer } from "@apollo/server";
 import { AuthRouter } from "@Routers/AuthRouter";
 import { expressMiddleware } from "@apollo/server/express4";
+import type { Express, Request, Response, NextFunction } from "express";
 
 export class Bootstrap {
   constructor(private app: Express) {};
@@ -17,5 +17,11 @@ export class Bootstrap {
 
   public addApollo(apollo: ApolloServer): void {
     this.app.use("/graphql", expressMiddleware(apollo));
+  };
+
+  public addExceptionHandler(): void {
+    this.app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+      res.status(500).json({ message: err.message });
+    });
   };
 };
