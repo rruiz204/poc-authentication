@@ -6,4 +6,8 @@ export class UserRepository {
   public async find(filters: Prisma.UserWhereInput): Promise<User | null> {
     return await this.prisma.user.findFirst({ where: filters });
   };
+
+  public async create(user: Prisma.UserCreateInput): Promise<User> {
+    return await this.prisma.user.create({ data: { ...user } });
+  };
 };
