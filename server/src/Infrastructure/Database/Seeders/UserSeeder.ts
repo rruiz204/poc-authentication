@@ -1,4 +1,4 @@
-import type { Seeder } from "./Seeder";
+import type { Seeder } from "../Seeder";
 import { UserFactory } from "@Database/Factories/UserFactory";
 import type { UserRepository } from "@Repositories/UserRepository";
 
