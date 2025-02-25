@@ -6,8 +6,8 @@ import { ListUsersUseCase } from "@UseCases/User/ListUsers/ListUsersUseCase";
 export class UserFacade {
   constructor(private repository: UserRepository) {};
 
-  public async listUsers(parent: unknown, args: ListUsersQuery, context: GraphQLContext) {
+  public async listUsers(parent: unknown, args: { input: ListUsersQuery }, context: GraphQLContext) {
     const useCase = new ListUsersUseCase(this.repository);
-    return useCase.execute(args);
+    return useCase.execute(args.input);
   };
 };

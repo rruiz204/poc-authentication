@@ -7,13 +7,22 @@ const UserType = `#graphql
   }
 `;
 
+const UserInputs = `#graphql
+  input ListUsersInput {
+    page: Int!
+    limit: Int!
+    name: String
+  }
+`;
+
 const UserQueries = `#graphql
   type Query {
-    listUsers(page: Int!, limit: Int!, name: String): [User!]!
+    listUsers(input: ListUsersInput!): [User!]!
   }
 `;
 
 export const UserGraphQL = `#graphql
   ${UserType}
+  ${UserInputs}
   ${UserQueries}
 `;
