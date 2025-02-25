@@ -1,6 +1,7 @@
 import { json } from "body-parser";
 import { ApolloServer } from "@apollo/server";
 import { AuthRouter } from "@Routers/AuthRouter";
+import { UserRouter } from "@Routers/UserRouter";
 import { expressMiddleware } from "@apollo/server/express4";
 import type { Express, Request, Response, NextFunction } from "express";
 
@@ -9,6 +10,7 @@ export class Bootstrap {
 
   public addRouters(): void {
     this.app.use("/api/auth", AuthRouter);
+    this.app.use("/api/user", UserRouter);
   };
 
   public addMiddlewares(): void {
