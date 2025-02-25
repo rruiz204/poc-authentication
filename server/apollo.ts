@@ -8,6 +8,9 @@ import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHt
 import { PingGraphQL } from "@Graphql/Schema/PingGraphQL";
 import { PingResolver } from "@Graphql/Resolvers/PingResolver";
 
+import { UserGraphQL } from "@Graphql/Schema/UserGraphQL";
+import { UserResolver } from "@Graphql/Resolvers/UserResolver";
+
 export class Apollo {
   private plugins: ApolloServerPlugin[] = [];
 
@@ -17,8 +20,8 @@ export class Apollo {
   };
 
   public instance: ApolloServer = new ApolloServer({
-    typeDefs: [PingGraphQL],
-    resolvers: [PingResolver],
+    typeDefs: [PingGraphQL, UserGraphQL],
+    resolvers: [PingResolver, UserResolver],
     plugins: this.plugins,
   });
 

@@ -9,7 +9,7 @@ export class AuthController {
   };
 
   public async simple(req: Request, res: Response) {
-    const auth = await this.simpleAuthUseCase.use(req.body);
+    const auth = await this.simpleAuthUseCase.execute(req.body);
     res.status(200).json({ type: auth.type, token: auth.token });
   };
 };
