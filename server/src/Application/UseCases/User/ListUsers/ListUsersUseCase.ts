@@ -6,7 +6,7 @@ import type { UserRepository } from "@Repositories/UserRepository";
 export class ListUsersUseCase implements UseCase<ListUsersQuery, UserDTO[]> {
   constructor(private repository: UserRepository) {};
   
-  public async use(query: ListUsersQuery): Promise<UserDTO[]> {
+  public async execute(query: ListUsersQuery): Promise<UserDTO[]> {
     const { page, limit } = query;
     
     return (await this.repository.list(page, limit, {})).map(user => {

@@ -9,7 +9,7 @@ import type { UserRepository } from "@Repositories/UserRepository";
 export class SimpleAuthUseCase implements UseCase<SimpleAuthCommand, AuthDTO> {
   constructor(private repository: UserRepository) {};
 
-  public async use(command: SimpleAuthCommand): Promise<AuthDTO> {
+  public async execute(command: SimpleAuthCommand): Promise<AuthDTO> {
     await SimpleAuthSchema.validate(command);
 
     const existing = await this.repository.find({ email: command.email });

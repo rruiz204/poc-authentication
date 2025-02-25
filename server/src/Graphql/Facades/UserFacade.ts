@@ -8,6 +8,6 @@ export class UserFacade {
 
   public async listUsers(parent: unknown, args: ListUsersQuery, context: GraphQLContext) {
     const useCase = new ListUsersUseCase(this.repository);
-    return useCase.use(args);
+    return useCase.execute(args);
   };
 };
