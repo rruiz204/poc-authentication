@@ -9,7 +9,7 @@ const UserType = `#graphql
 
 const UserQueries = `#graphql
   type Query {
-    listUsers(page: Int!, limit: Int!): [User!]!
+    listUsers(page: Int!, limit: Int!, name: String): [User!]!
   }
 `;
 
