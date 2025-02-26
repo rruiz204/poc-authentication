@@ -17,6 +17,7 @@ const UserInputs = `#graphql
 
 const UserQueries = `#graphql
   type Query {
+    getMyUser: User!
     listUsers(input: ListUsersInput!): [User!]!
   }
 `;

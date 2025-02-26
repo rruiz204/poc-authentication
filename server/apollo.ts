@@ -1,6 +1,7 @@
 import http from "http";
 import { ApolloServer } from "@apollo/server";
 import type { ApolloServerPlugin } from "@apollo/server";
+import type { GraphQLContext } from "@Graphql/GraphQLContext";
 
 import { ApolloServerPlugingLogging } from "@Graphql/Plugins/ApolloServerPluginLogging";
 import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
@@ -19,7 +20,7 @@ export class Apollo {
     this.addPlugin(ApolloServerPluginDrainHttpServer({ httpServer: server }));
   };
 
-  public instance: ApolloServer = new ApolloServer({
+  public instance = new ApolloServer<GraphQLContext>({
     typeDefs: [PingGraphQL, UserGraphQL],
     resolvers: [PingResolver, UserResolver],
     plugins: this.plugins,
