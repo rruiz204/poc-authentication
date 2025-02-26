@@ -1,10 +1,10 @@
 import type { AuthDTO } from "../DTOs/AuthDTO";
 import type { UseCase } from "@UseCases/UseCase";
 import { SimpleAuthSchema } from "./SimpleAuthSchema";
-import { HasherService } from "@Services/HasherService";
-import { JwTokensService } from "@Services/JwTokensService";
 import type { SimpleAuthCommand } from "./SimpleAuthCommand";
+import { HasherService } from "@Services/Hasher/HasherService";
 import type { UserRepository } from "@Repositories/UserRepository";
+import { JwTokensService } from "@Services/JwTokens/JwTokensService";
 
 export class SimpleAuthUseCase implements UseCase<SimpleAuthCommand, AuthDTO> {
   constructor(private repository: UserRepository) {};

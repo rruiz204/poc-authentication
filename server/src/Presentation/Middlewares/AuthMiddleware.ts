@@ -1,7 +1,7 @@
 import { GraphQLError } from "graphql";
 import type { Request } from "express";
-import { JwTokensService} from "@Services/JwTokensService";
-import type { JwtPayload } from "@Services/JwTokensService";
+import type { JwtPayload } from "@Services/JwTokens/JwtPayload";
+import { JwTokensService} from "@Services/JwTokens/JwTokensService";
 
 export const AuthMiddleware = async (req: Request): Promise<JwtPayload> => {
   let token = req.headers.authorization || "";

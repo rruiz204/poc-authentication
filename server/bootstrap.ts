@@ -5,6 +5,8 @@ import { UserRouter } from "@Routers/UserRouter";
 import { expressMiddleware } from "@apollo/server/express4";
 import { AuthMiddleware } from "@Middlewares/AuthMiddleware";
 import type { GraphQLContext } from "@Graphql/GraphQLContext";
+import { LoggerService } from "@Services/Logger/LoggerService";
+import { RestLoggerOpts } from "@Services/Logger/RestLoggerOpts";
 import type { Express, Request, Response, NextFunction } from "express";
 
 export class Bootstrap {
@@ -17,6 +19,14 @@ export class Bootstrap {
 
   public addMiddlewares(): void {
     this.app.use(json());
+  };
+
+  public addLogging(): void {
+    this.app.use((req: Request, res: Response, next: NextFunction) => {
+      const logger = LoggerService.getLogger(RestLoggerOpts);
+      logger.info(`${req.method} ${req.url}`);
+      next();
+    });
   };
 
   public addApollo(apollo: ApolloServer<GraphQLContext>): void {

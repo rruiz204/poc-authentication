@@ -1,8 +1,5 @@
-import { SignJWT, jwtVerify, type JWTPayload } from "jose";
-
-export interface JwtPayload extends JWTPayload {
-  id: number;
-};
+import { SignJWT, jwtVerify } from "jose";
+import type { JwtPayload } from "./JwtPayload";
 
 export class JwTokensService {
   private static encoder = new TextEncoder();

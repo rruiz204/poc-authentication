@@ -1,10 +1,10 @@
 import type { UseCase } from "@UseCases/UseCase";
-import { HasherService } from "@Services/HasherService";
 import { RegisterUserSchema } from "./RegisterUserSchema";
 import type { AuthDTO } from "@UseCases/Auth/DTOs/AuthDTO";
-import { JwTokensService } from "@Services/JwTokensService";
+import { HasherService } from "@Services/Hasher/HasherService";
 import type { RegisterUserCommand } from "./RegisterUserCommand";
 import type { UserRepository } from "@Repositories/UserRepository";
+import { JwTokensService } from "@Services/JwTokens/JwTokensService";
 
 export class RegisterUserUseCase implements UseCase<RegisterUserCommand, AuthDTO> {
   constructor(private repository: UserRepository) {};
