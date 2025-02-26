@@ -3,6 +3,8 @@ import { ApolloServer } from "@apollo/server";
 import { AuthRouter } from "@Routers/AuthRouter";
 import { UserRouter } from "@Routers/UserRouter";
 import { expressMiddleware } from "@apollo/server/express4";
+import { AuthMiddleware } from "@Middlewares/AuthMiddleware";
+import type { GraphQLContext } from "@Graphql/GraphQLContext";
 import type { Express, Request, Response, NextFunction } from "express";
 
 export class Bootstrap {
@@ -17,8 +19,14 @@ export class Bootstrap {
     this.app.use(json());
   };
 
-  public addApollo(apollo: ApolloServer): void {
-    this.app.use("/graphql", expressMiddleware(apollo));
+  public addApollo(apollo: ApolloServer<GraphQLContext>): void {
+    this.app.use("/graphql", expressMiddleware(apollo, {
+      
+      context: async ({ req, res }): Promise<GraphQLContext> => {
+        const payload = await AuthMiddleware(req);
+        return { user: payload.id };
+      },
+    }));
   };
 
   public addExceptionHandler(): void {

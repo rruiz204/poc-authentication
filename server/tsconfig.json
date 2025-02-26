@@ -31,6 +31,7 @@
       "@Database/*": ["src/Infrastructure/Database/*"],
 
       "@Controllers/*": ["src/Presentation/Controllers/*"],
+      "@Middlewares/*": ["src/Presentation/Middlewares/*"],
       "@Routers/*": ["src/Presentation/Routers/*"],
 
       "@UseCases/*": ["src/Application/UseCases/*"],
