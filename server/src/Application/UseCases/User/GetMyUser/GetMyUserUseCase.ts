@@ -1,4 +1,4 @@
-import type { UserDTO } from "../DTOs/UserDTO";
+import type { UserDTO } from "@DTOs/UserDTO";
 import type { UseCase } from "@UseCases/UseCase";
 import type { GetMyUserQuery } from "./GetMyUserQuery";
 import type { UserRepository } from "@Repositories/UserRepository";
