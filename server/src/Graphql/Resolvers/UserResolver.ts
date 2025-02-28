@@ -2,9 +2,9 @@ import { Context } from "@Database/Context";
 import { UserRepository } from "@Repositories/UserRepository";
 import type { GraphQLContext } from "@Graphql/GraphQLContext";
 
-import type { ListUsersDTO } from "@UseCases/User/DTOs/ListUsersDTO";
-import type { GetMyUserDTO } from "@UseCases/User/GetMyUser/GetMyUserDTO";
 import type { UpdateUserDTO } from "@UseCases/User/DTOs/UpdateUserDTO";
+import type { GetMyUserDTO } from "@UseCases/User/GetMyUser/GetMyUserDTO";
+import type { ListUsersDTO } from "@UseCases/User/ListUsers/ListUsersDTO";
 
 import { ListUsersUseCase } from "@UseCases/User/ListUsers/ListUsersUseCase";
 import { GetMyUserUseCase } from "@UseCases/User/GetMyUser/GetMyUserUseCase";
