@@ -13,6 +13,12 @@ const UserInputs = `#graphql
     limit: Int!
     name: String
   }
+
+  input UpdateUserInput {
+    name: String
+    email: String
+    active: Boolean
+  }
 `;
 
 const UserQueries = `#graphql
@@ -22,8 +28,15 @@ const UserQueries = `#graphql
   }
 `;
 
+const UserMutations = `#graphql
+  type Mutation {
+    updateUser(input: UpdateUserInput!): User!
+  }
+`;
+
 export const UserGraphQL = `#graphql
   ${UserType}
   ${UserInputs}
   ${UserQueries}
+  ${UserMutations}
 `;
