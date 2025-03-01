@@ -6,9 +6,6 @@ import type { GraphQLContext } from "@Graphql/GraphQLContext";
 import { ApolloServerPlugingLogging } from "@Graphql/Plugins/ApolloServerPluginLogging";
 import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
 
-import { PingGraphQL } from "@Graphql/Schema/PingGraphQL";
-import { PingResolver } from "@Graphql/Resolvers/PingResolver";
-
 import { UserGraphQL } from "@Graphql/Schema/UserGraphQL";
 import { UserResolver } from "@Graphql/Resolvers/UserResolver";
 
@@ -21,8 +18,8 @@ export class Apollo {
   };
 
   public instance = new ApolloServer<GraphQLContext>({
-    typeDefs: [PingGraphQL, UserGraphQL],
-    resolvers: [PingResolver, UserResolver],
+    typeDefs: [UserGraphQL],
+    resolvers: [UserResolver],
     plugins: this.plugins,
   });
 
