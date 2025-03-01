@@ -35,6 +35,7 @@
       "@Routers/*": ["src/Presentation/Routers/*"],
 
       "@UseCases/*": ["src/Application/UseCases/*"],
+      "@DTOs/*": ["src/Application/DTOs/*"],
       "@Graphql/*": ["src/Graphql/*"],
     },
   }

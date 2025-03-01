@@ -1,7 +1,8 @@
+import type { UserDTO } from "@DTOs/UserDTO";
 import type { UseCase } from "@UseCases/UseCase";
 import type { UpdateUserCommand } from "./UpdateUserCommand";
-import type { UserDTO } from "../DTOs/UserDTO";
 import type { UserRepository } from "@Repositories/UserRepository";
+
 import { UpdateUserSchema } from "./UpdateUserSchema";
 
 export class UpdateUserUseCase implements UseCase<UpdateUserCommand, UserDTO> {
