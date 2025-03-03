@@ -2,7 +2,7 @@ import * as mailer from "nodemailer";
 import { EmailConfig } from "@Configs/EmailConfig";
 import type { SimpleEmailBase } from "./Emails/SimpleEmailBase";
 
-export class MailerService {
+export class EmailService {
   private static transport = mailer.createTransport({
     host: EmailConfig.MAIL_HOST,
     port: EmailConfig.MAIL_PORT,
