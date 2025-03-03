@@ -1,6 +1,6 @@
 import { faker } from "@faker-js/faker";
 import type { User } from "@prisma/client";
-import { HasherService } from "@Services/Hasher/HasherService";
+import { HashService } from "@Services/HashService/Service";
 
 interface FactoryArgs {
   id: number;
@@ -11,7 +11,7 @@ interface FactoryArgs {
 
 export class UserFactory {
   public static async build({ id, name, email, password }: FactoryArgs): Promise<User> {
-    const hashed = await HasherService.hash(password);
+    const hashed = await HashService.hash(password);
 
     return {
       id: id,

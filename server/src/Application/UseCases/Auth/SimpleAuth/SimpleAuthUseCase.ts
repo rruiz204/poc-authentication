@@ -4,7 +4,7 @@ import type { SimpleAuthCommand } from "./SimpleAuthCommand";
 import type { UserRepository } from "@Repositories/UserRepository";
 
 import { SimpleAuthSchema } from "./SimpleAuthSchema";
-import { HasherService } from "@Services/Hasher/HasherService";
+import { HashService } from "@Services/HashService/Service";
 import { JwTokensService } from "@Services/JwTokens/JwTokensService";
 
 export class SimpleAuthUseCase implements UseCase<SimpleAuthCommand, AuthDTO> {
@@ -16,7 +16,7 @@ export class SimpleAuthUseCase implements UseCase<SimpleAuthCommand, AuthDTO> {
     const existing = await this.repository.find({ email: command.email });
     if (!existing) throw new Error("User not found");
 
-    const verified = await HasherService.verify(command.password, existing.password);
+    const verified = await HashService.verify(command.password, existing.password);
     if (!verified) throw new Error("Invalid password");
 
     const token = await JwTokensService.sign({ id: existing.id });
