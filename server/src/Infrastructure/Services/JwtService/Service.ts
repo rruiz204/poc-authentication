@@ -1,7 +1,7 @@
 import { SignJWT, jwtVerify } from "jose";
-import type { JwtPayload } from "./JwtPayload";
+import type { JwtPayload } from "./Payload";
 
-export class JwTokensService {
+export class JwtService {
   private static encoder = new TextEncoder();
   private static secret = this.encoder.encode(process.env.JWT_SECRET);
 

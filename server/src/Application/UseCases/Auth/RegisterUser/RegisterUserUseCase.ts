@@ -4,8 +4,8 @@ import type { RegisterUserCommand } from "./RegisterUserCommand";
 import type { UserRepository } from "@Repositories/UserRepository";
 
 import { RegisterUserSchema } from "./RegisterUserSchema";
+import { JwtService } from "@Services/JwtService/Service";
 import { HashService } from "@Services/HashService/Service";
-import { JwTokensService } from "@Services/JwTokens/JwTokensService";
 
 export class RegisterUserUseCase implements UseCase<RegisterUserCommand, AuthDTO> {
   constructor(private repository: UserRepository) {};
@@ -19,7 +19,7 @@ export class RegisterUserUseCase implements UseCase<RegisterUserCommand, AuthDTO
     const hashed = await HashService.hash(command.password);
     const user = await this.repository.create({ ...command, password: hashed });
 
-    const token = await JwTokensService.sign({ id: user.id });
+    const token = await JwtService.sign({ id: user.id });
     return { type: "Bearer", token };
   };
 };
