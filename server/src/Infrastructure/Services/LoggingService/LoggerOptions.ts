@@ -1,6 +1,6 @@
 import winston from "winston";
 
-export interface ILoggerOptions {
+export interface LoggerOptions {
   format: winston.Logform.Format;
   file: winston.transports.FileTransportInstance;
 };

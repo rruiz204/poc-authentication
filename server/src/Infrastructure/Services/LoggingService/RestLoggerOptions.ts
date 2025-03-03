@@ -1,9 +1,9 @@
 import winston from "winston";
-import type { ILoggerOptions } from "./ILoggerOptions";
+import type { LoggerOptions } from "./LoggerOptions";
 
-export const GraphLoggerOpts: ILoggerOptions = {
+export const RestLoggerOptions: LoggerOptions = {
   file: new winston.transports.File({
-    filename: "logs/graphql.log"
+    filename: "logs/rest.log"
   }),
   format: winston.format.combine(
     winston.format.timestamp({ format: "YYYY-MM-DD HH:mm:ss" }),
