@@ -1,7 +1,7 @@
 import { GraphQLError } from "graphql";
 import type { Request } from "express";
-import type { JwtPayload } from "@Services/JwTokens/JwtPayload";
-import { JwTokensService} from "@Services/JwTokens/JwTokensService";
+import { JwtService } from "@Services/JwtService/Service";
+import type { JwtPayload } from "@Services/JwtService/Payload";
 
 export const AuthMiddleware = async (req: Request): Promise<JwtPayload> => {
   let token = req.headers.authorization || "";
@@ -10,5 +10,5 @@ export const AuthMiddleware = async (req: Request): Promise<JwtPayload> => {
     throw new GraphQLError("User is not authenticated");
   };
   
-  return await JwTokensService.verify(token.split(" ")[1]);
+  return await JwtService.verify(token.split(" ")[1]);
 };

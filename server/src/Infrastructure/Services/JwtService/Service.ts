@@ -1,9 +1,10 @@
 import { SignJWT, jwtVerify } from "jose";
-import type { JwtPayload } from "./JwtPayload";
+import type { JwtPayload } from "./Payload";
+import { JwtConfig } from "@Configs/JwtConfig";
 
-export class JwTokensService {
+export class JwtService {
   private static encoder = new TextEncoder();
-  private static secret = this.encoder.encode(process.env.JWT_SECRET);
+  private static secret = this.encoder.encode(JwtConfig.JWT_SECRET);
 
   public static async sign(payload: JwtPayload): Promise<string> {
     return new SignJWT(payload)
