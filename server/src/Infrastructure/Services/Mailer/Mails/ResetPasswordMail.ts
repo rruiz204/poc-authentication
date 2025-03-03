@@ -1,15 +1,10 @@
-import { BaseMail} from "./BaseMail";
-import type Mail from "nodemailer/lib/mailer";
+import { SimpleMailBase, type MailProps } from "./SimpleMailBase";
 
-export class ResetPasswordMail extends BaseMail {
-  options: Mail.Options = {
-    from: process.env.MAIL_ENTITY,
-    subject: "Reset Password",
-    to: this.props.to,
-    html: "<b>Hello world?</b>",
-  };
+export class ResetPasswordMail extends SimpleMailBase {
+  constructor(props: MailProps) {
+    super(props);
 
-  public obtain(): Mail.Options {
-    return this.options;
+    this.options.subject = "Reset Password";
+    this.options.html = "<b>reset password</b>";
   };
 };
