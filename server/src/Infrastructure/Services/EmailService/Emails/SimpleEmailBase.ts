@@ -1,16 +1,16 @@
 import type Mail from "nodemailer/lib/mailer";
-import { MailConfig } from "@Configs/MailConfig";
+import { EmailConfig } from "@Configs/EmailConfig";
 
-export interface MailProps {
+export interface EmailProps {
   to: string;
 };
 
-export class SimpleMailBase {
+export class SimpleEmailBase {
   protected options: Mail.Options = {
-    from: MailConfig.MAIL_ENTITY,
+    from: EmailConfig.MAIL_ENTITY,
   };
 
-  constructor(protected props: MailProps) {
+  constructor(protected props: EmailProps) {
     this.options.to = props.to;
   };
 

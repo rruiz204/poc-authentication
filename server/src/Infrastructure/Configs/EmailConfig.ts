@@ -9,4 +9,4 @@ const schema = yup.object({
     .transform((v) => Number(v)),
 });
 
-export const MailConfig = schema.validateSync(process.env);
+export const EmailConfig = schema.validateSync(process.env);
