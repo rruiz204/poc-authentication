@@ -9,7 +9,7 @@
     "prisma:migrate:main": "prisma migrate dev"
   },
   "prisma": {
-    "seed": "bun ./src/Infrastructure/Database/SeedRunner.ts"
+    "seed": "bun ./src/Infrastructure/Database/Seeders/SeedRunner.ts"
   },
   "devDependencies": {
     "@types/body-parser": "^1.19.5",
