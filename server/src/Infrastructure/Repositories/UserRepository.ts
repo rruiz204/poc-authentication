@@ -17,7 +17,7 @@ export class UserRepository {
   };
 
   public async create(user: Prisma.UserCreateInput): Promise<User> {
-    return await this.prisma.user.create({ data: { ...user } });
+    return await this.prisma.user.create({ data: user });
   };
 
   public async update(filters: Prisma.UserWhereUniqueInput, data: Prisma.UserUpdateInput): Promise<User> {
