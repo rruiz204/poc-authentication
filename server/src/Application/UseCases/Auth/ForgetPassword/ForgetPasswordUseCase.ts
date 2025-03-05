@@ -4,10 +4,9 @@ import type { ForgetPasswordCommand } from "./ForgetPasswordCommand";
 import type { ForgetPasswordResponse } from "./ForgetPasswordResponse";
 import type { ResetTokenRepository } from "@Repositories/ResetTokenRepository";
 
-import { EmailService } from "@Services/EmailService/Service";
 import { ForgetPasswordSchema } from "./ForgetPasswordSchema";
+import { ForgetPasswordEmail } from "@Emails/ForgetPasswordEmail";
 import { ResetTokenService } from "@Services/ResetTokenService/Service";
-import { ForgetPasswordEmail } from "@Services/EmailService/Emails/ForgetPasswordEmail";
 
 export class ForgetPasswordUseCase implements UseCase<ForgetPasswordCommand, ForgetPasswordResponse> {
   constructor(
@@ -24,8 +23,11 @@ export class ForgetPasswordUseCase implements UseCase<ForgetPasswordCommand, For
     const resetToken = ResetTokenService.generate();
     await this.resetTokenRepository.upsert(resetToken, existingUser.id);
 
-    const mail = new ForgetPasswordEmail({ to: existingUser.email, token: resetToken });
-    await EmailService.send(mail);
+    const email = new ForgetPasswordEmail({
+      to: existingUser.email, token: resetToken
+    });
+
+    await email.send();
 
     return { message: "Check your emails." };
   };

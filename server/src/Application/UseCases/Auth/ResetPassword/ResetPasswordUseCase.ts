@@ -5,8 +5,7 @@ import type { ResetPasswordResponse } from "./ResetPasswordResponse";
 import type { ResetTokenRepository } from "@Repositories/ResetTokenRepository";
 
 import { ResetPasswordSchema } from "./ResetPasswordSchema";
-import { EmailService } from "@Services/EmailService/Service";
-import { ResetPasswordMail } from "@Services/EmailService/Emails/ResetPasswordEmail";
+import { ResetPasswordMail } from "@Emails/ResetPasswordEmail";
 
 export class ResetPasswordUseCase implements UseCase<ResetPasswordCommand, ResetPasswordResponse> {
   constructor(
@@ -26,8 +25,11 @@ export class ResetPasswordUseCase implements UseCase<ResetPasswordCommand, Reset
 
     await this.resetTokenRepository.delete({ id: existingToken.id });
 
-    const mail = new ResetPasswordMail({ to: updatedUser.email });
-    await EmailService.send(mail);
+    const email = new ResetPasswordMail({
+      to: updatedUser.email
+    });
+    
+    await email.send();
 
     throw new Error("Method not implemented.");
   };
