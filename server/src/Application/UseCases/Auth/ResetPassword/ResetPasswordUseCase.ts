@@ -1,29 +1,25 @@
 import type { UseCase } from "@UseCases/UseCase";
+import type { UnitOfWOrk } from "@Database/UnitOfWork";
 import type { ResetPasswordCommand } from "./ResetPasswordCommand";
-import type { UserRepository } from "@Repositories/UserRepository";
 import type { ResetPasswordResponse } from "./ResetPasswordResponse";
-import type { ResetTokenRepository } from "@Repositories/ResetTokenRepository";
 
 import { ResetPasswordSchema } from "./ResetPasswordSchema";
 import { ResetPasswordMail } from "@Emails/ResetPasswordEmail";
 
 export class ResetPasswordUseCase implements UseCase<ResetPasswordCommand, ResetPasswordResponse> {
-  constructor(
-    private userRepository: UserRepository,
-    private resetTokenRepository: ResetTokenRepository,
-  ) {};
+  constructor(private uow: UnitOfWOrk) {};
 
   public async execute(command: ResetPasswordCommand): Promise<ResetPasswordResponse> {
     await ResetPasswordSchema.validate(command);
 
-    const existing = await this.resetTokenRepository.find({ token: command.token });
-    if (!existing) throw new Error("Token not found");
+    const existingToken = await this.uow.resetToken.find({ token: command.token });
+    if (!existingToken) throw new Error("Token not found");
 
-    const updated = await this.userRepository.update(
-      { id: existing.userId }, { password: command.password }
+    const updated = await this.uow.user.update(
+      { id: existingToken.userId }, { password: command.password }
     );
 
-    await this.resetTokenRepository.delete({ id: existing.id });
+    await this.uow.resetToken.delete({ id: existingToken.id });
 
     const email = new ResetPasswordMail({
       to: updated.email
