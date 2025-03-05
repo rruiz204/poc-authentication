@@ -16,17 +16,17 @@ export class ResetPasswordUseCase implements UseCase<ResetPasswordCommand, Reset
   public async execute(command: ResetPasswordCommand): Promise<ResetPasswordResponse> {
     await ResetPasswordSchema.validate(command);
 
-    const existingToken = await this.resetTokenRepository.find({ token: command.token });
-    if (!existingToken) throw new Error("Token not found");
+    const existing = await this.resetTokenRepository.find({ token: command.token });
+    if (!existing) throw new Error("Token not found");
 
-    const updatedUser = await this.userRepository.update(
-      { id: existingToken.userId }, { password: command.password }
+    const updated = await this.userRepository.update(
+      { id: existing.userId }, { password: command.password }
     );
 
-    await this.resetTokenRepository.delete({ id: existingToken.id });
+    await this.resetTokenRepository.delete({ id: existing.id });
 
     const email = new ResetPasswordMail({
-      to: updatedUser.email
+      to: updated.email
     });
     
     await email.send();

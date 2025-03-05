@@ -8,12 +8,12 @@ import { JwtService } from "@Services/JwtService/Service";
 import { HashService } from "@Services/HashService/Service";
 
 export class SimpleAuthUseCase implements UseCase<SimpleAuthCommand, AuthDTO> {
-  constructor(private repository: UserRepository) {};
+  constructor(private userRepository: UserRepository) {};
 
   public async execute(command: SimpleAuthCommand): Promise<AuthDTO> {
     await SimpleAuthSchema.validate(command);
 
-    const existing = await this.repository.find({ email: command.email });
+    const existing = await this.userRepository.find({ email: command.email });
     if (!existing) throw new Error("User not found");
 
     const verified = await HashService.verify(command.password, existing.password);

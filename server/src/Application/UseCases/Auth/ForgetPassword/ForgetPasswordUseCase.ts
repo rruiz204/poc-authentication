@@ -17,14 +17,14 @@ export class ForgetPasswordUseCase implements UseCase<ForgetPasswordCommand, For
   public async execute(command: ForgetPasswordCommand): Promise<ForgetPasswordResponse> {
     await ForgetPasswordSchema.validate(command);
 
-    const existingUser = await this.userRepository.find({ email: command.email });
-    if (!existingUser) throw new Error("User not found");
+    const existing = await this.userRepository.find({ email: command.email });
+    if (!existing) throw new Error("User not found");
 
-    const resetToken = ResetTokenService.generate();
-    await this.resetTokenRepository.upsert(resetToken, existingUser.id);
+    const token = ResetTokenService.generate();
+    await this.resetTokenRepository.upsert(token, existing.id);
 
     const email = new ForgetPasswordEmail({
-      to: existingUser.email, token: resetToken
+      to: existing.email, token: token
     });
 
     await email.send();
