@@ -30,6 +30,7 @@
       "@Services/*": ["src/Infrastructure/Services/*"],
       "@Database/*": ["src/Infrastructure/Database/*"],
       "@Configs/*": ["src/Infrastructure/Configs/*"],
+      "@Emails/*": ["src/Infrastructure/Emails/*"],
 
       "@Controllers/*": ["src/Presentation/Controllers/*"],
       "@Middlewares/*": ["src/Presentation/Middlewares/*"],
