@@ -1,5 +1,5 @@
 import { Context } from "@Database/Context";
-import { UserRepository } from "@Repositories/UserRepository";
+import { UnitOfWOrk } from "@Database/UnitOfWork";
 import type { GraphQLContext } from "@Graphql/GraphQLContext";
 
 import type { GetMyUserDTO } from "@UseCases/User/GetMyUser/GetMyUserDTO";
@@ -10,10 +10,11 @@ import { ListUsersUseCase } from "@UseCases/User/ListUsers/ListUsersUseCase";
 import { GetMyUserUseCase } from "@UseCases/User/GetMyUser/GetMyUserUseCase";
 import { UpdateUserUseCase } from "@UseCases/User/UpdateUser/UpdateUserUseCase";
 
-const repository = new UserRepository(Context);
-const listUsersUseCase = new ListUsersUseCase(repository);
-const getMyUserUseCase = new GetMyUserUseCase(repository);
-const updateUserUseCase = new UpdateUserUseCase(repository);
+const uow = new UnitOfWOrk(Context);
+
+const listUsersUseCase = new ListUsersUseCase(uow);
+const getMyUserUseCase = new GetMyUserUseCase(uow);
+const updateUserUseCase = new UpdateUserUseCase(uow);
 
 export const UserResolver = {
   Query: {
