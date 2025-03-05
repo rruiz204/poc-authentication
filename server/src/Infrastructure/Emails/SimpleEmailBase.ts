@@ -1,4 +1,5 @@
 import type Mail from "nodemailer/lib/mailer";
+import { EmailTransport } from "./EmailTransport";
 import { EmailConfig } from "@Configs/EmailConfig";
 
 export interface EmailProps {
@@ -14,7 +15,7 @@ export class SimpleEmailBase {
     this.options.to = props.to;
   };
 
-  public obtain(): Mail.Options {
-    return this.options;
+  public async send(): Promise<void> {
+    await EmailTransport.sendMail(this.options);
   };
 };
