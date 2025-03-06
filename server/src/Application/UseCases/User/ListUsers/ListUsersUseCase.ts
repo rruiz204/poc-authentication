@@ -7,15 +7,17 @@ export class ListUsersUseCase implements UseCase<ListUsersQuery, UserDTO[]> {
   constructor(private uow: UnitOfWOrk) {};
   
   public async execute(query: ListUsersQuery): Promise<UserDTO[]> {
-    const { page, limit, name } = query;
-    
-    return (await this.uow.user.list(page, limit, { name })).map(user => {
-      return {
-        id: user.id,
-        name: user.name,
-        email: user.email,
-        active: user.active,
-      };
+    const offset = (query.page - 1) * query.limit;
+
+    const users = await this.uow.user.list({
+      offset: offset, limit: query.limit,
     });
+    
+    return users.map((user) => ({
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      active: user.active,
+    }))
   };
 };

@@ -13,13 +13,13 @@ export class SimpleAuthUseCase implements UseCase<SimpleAuthCommand, AuthDTO> {
   public async execute(command: SimpleAuthCommand): Promise<AuthDTO> {
     await SimpleAuthSchema.validate(command);
 
-    const existingUser = await this.uow.user.find({ email: command.email });
-    if (!existingUser) throw new Error("User not found");
+    const existing = await this.uow.user.findByEmail(command.email);
+    if (!existing) throw new Error("User not found");
 
-    const verified = await HashService.verify(command.password, existingUser.password);
+    const verified = await HashService.verify(command.password, existing.password);
     if (!verified) throw new Error("Invalid password");
 
-    const token = await JwtService.sign({ id: existingUser.id });
+    const token = await JwtService.sign({ id: existing.id });
     return { type: "Bearer", token };
   };
 };

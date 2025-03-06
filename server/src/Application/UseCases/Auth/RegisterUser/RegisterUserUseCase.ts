@@ -13,11 +13,14 @@ export class RegisterUserUseCase implements UseCase<RegisterUserCommand, AuthDTO
   public async execute(command: RegisterUserCommand): Promise<AuthDTO> {
     await RegisterUserSchema.validate(command);
 
-    const existingUser = this.uow.user.find({ email: command.email });
-    if (!existingUser) throw new Error("User already exists");
+    const existing = this.uow.user.findByEmail(command.email);
+    if (!existing) throw new Error("User already exists");
 
     const hashed = await HashService.hash(command.password);
-    const user = await this.uow.user.create({ ...command, password: hashed });
+    
+    const user = await this.uow.user.create({
+      create: { ...command, password: hashed }
+    });
 
     const token = await JwtService.sign({ id: user.id });
     return { type: "Bearer", token };

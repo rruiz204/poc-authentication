@@ -16,17 +16,17 @@ model Seed {
 }
 
 model User {
-  id         Int         @id @default(autoincrement())
-  name       String      @unique
-  email      String      @unique
-  password   String
-  active     Boolean     @default(true)
-  createdAt  DateTime    @default(now())
-  updatedAt  DateTime    @updatedAt
-  resetToken ResetToken?
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  email     String   @unique
+  password  String
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  token     Token?
 }
 
-model ResetToken {
+model Token {
   id     Int    @id @default(autoincrement())
   token  String @unique
   userId Int    @unique

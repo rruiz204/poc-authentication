@@ -7,14 +7,14 @@ export class GetMyUserUseCase implements UseCase<GetMyUserQuery, UserDTO> {
   constructor(private uow: UnitOfWOrk) {};
 
   public async execute(query: GetMyUserQuery): Promise<UserDTO> {
-    const existingUser = await this.uow.user.find({ id: query.user });
-    if (!existingUser) throw new Error("User not found");
+    const user = await this.uow.user.findById(query.userId);
+    if (!user) throw new Error("User not found");
 
     return {
-      id: existingUser.id,
-      name: existingUser.name,
-      email: existingUser.email,
-      active: existingUser.active,
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      active: user.active,
     };
   };
 };
