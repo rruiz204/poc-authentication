@@ -17,15 +17,7 @@ export class ForgetPasswordUseCase implements UseCase<ForgetPasswordCommand, For
     if (!existing) throw new Error("User not found");
 
     const token = ResetTokenService.generate();
-
-    await this.uow.token.upsert({
-      userId: existing.id,
-      update: { token: token },
-      create: {
-        token: token,
-        user: { connect: { id: existing.id } }
-      },
-    });
+    await this.uow.token.upsert({ token, user: existing.id });
 
     const forgetPasswordEmail = new ForgetPasswordEmail({
       to: existing.email, token: token

@@ -7,9 +7,9 @@ export class TokenRepository {
 
   public async upsert(dto: UpsertTokenDTO) {
     return await this.prisma.token.upsert({
-      where: { userId: dto.userId },
-      create: dto.create,
-      update: dto.update,
+      where: { userId: dto.user },
+      update: { token: dto.token },
+      create: { token: dto.token, userId: dto.user },
     });
   };
 
