@@ -3,6 +3,7 @@ import type { UnitOfWOrk } from "@Database/UnitOfWork";
 import type { ResetPasswordCommand } from "./ResetPasswordCommand";
 import type { ResetPasswordResponse } from "./ResetPasswordResponse";
 
+import { HashService } from "@Services/HashService/Service";
 import { ResetPasswordSchema } from "./ResetPasswordSchema";
 import { ResetPasswordMail } from "@Emails/ResetPasswordEmail";
 
@@ -12,21 +13,22 @@ export class ResetPasswordUseCase implements UseCase<ResetPasswordCommand, Reset
   public async execute(command: ResetPasswordCommand): Promise<ResetPasswordResponse> {
     await ResetPasswordSchema.validate(command);
 
-    const existingToken = await this.uow.resetToken.find({ token: command.token });
-    if (!existingToken) throw new Error("Token not found");
+    const existing = await this.uow.token.findByToken(command.token);
+    if (!existing) throw new Error("Token not found");
 
-    const updated = await this.uow.user.update(
-      { id: existingToken.userId }, { password: command.password }
-    );
+    const hashed = await HashService.hash(command.password);
 
-    await this.uow.resetToken.delete({ id: existingToken.id });
+    const updated = await this.uow.user.update({
+      id: existing.id, update: { password: hashed }
+    });
 
-    const email = new ResetPasswordMail({
+    await this.uow.token.delete({ id: existing.id });
+
+    const resetPasswordEmail = new ResetPasswordMail({
       to: updated.email
     });
     
-    await email.send();
-
-    throw new Error("Method not implemented.");
+    await resetPasswordEmail.send();
+    return { message: "Passwored updated" };
   };
 };
