@@ -1,3 +1,3 @@
 export interface GetMyUserQuery {
-  user: number;
+  userId: number;
 };
