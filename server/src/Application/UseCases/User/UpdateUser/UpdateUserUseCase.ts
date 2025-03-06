@@ -11,16 +11,18 @@ export class UpdateUserUseCase implements UseCase<UpdateUserCommand, UserDTO> {
   public async execute(commad: UpdateUserCommand): Promise<UserDTO> {
     await UpdateUserSchema.validate(commad);
 
-    const existingUser = await this.uow.user.find({ email: commad.email });
-    if (!existingUser) throw new Error("User not found");
+    const existing = await this.uow.user.findById(commad.id);
+    if (!existing) throw new Error("User not found");
 
-    const updatedUser = await this.uow.user.update({ id: existingUser.id }, commad);
+    const updated = await this.uow.user.update({
+      id: existing.id, update: commad
+    });
 
     return {
-      id: updatedUser.id,
-      name: updatedUser.name,
-      email: updatedUser.email,
-      active: updatedUser.active,
+      id: updated.id,
+      name: updated.name,
+      email: updated.email,
+      active: updated.active,
     };
   };
 };
