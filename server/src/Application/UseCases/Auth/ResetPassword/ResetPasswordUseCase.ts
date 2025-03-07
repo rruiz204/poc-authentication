@@ -5,7 +5,7 @@ import type { ResetPasswordResponse } from "./ResetPasswordResponse";
 
 import { HashService } from "@Services/HashService/Service";
 import { ResetPasswordSchema } from "./ResetPasswordSchema";
-import { ResetPasswordMail } from "@Emails/ResetPasswordEmail";
+import { ResetPasswordMail } from "@Emails/ResetPassword/ResetPasswordEmail";
 
 export class ResetPasswordUseCase implements UseCase<ResetPasswordCommand, ResetPasswordResponse> {
   constructor(private uow: UnitOfWOrk) {};
