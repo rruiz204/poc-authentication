@@ -7,9 +7,9 @@ export interface EmailProps {
   to: string;
 };
 
-export class EmailBase {
+export class EmailBase<Model> {
   protected template: string = "";
-  protected payload: any = {};
+  protected model!: Model;
 
   protected options: Mail.Options = {
     from: EmailConfig.MAIL_ENTITY,
@@ -22,7 +22,7 @@ export class EmailBase {
   protected async prepare(): Promise<void> {
     const builder = new EmailTemplate(this.template);
     await builder.load();
-    this.options.html = builder.obtain(this.payload);
+    this.options.html = builder.obtain(this.model);
   };
 
   public async send(): Promise<void> {
