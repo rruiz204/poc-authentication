@@ -7,25 +7,26 @@ export interface EmailProps {
   to: string;
 };
 
-export class EmailSimpleBase {
-  private file: string = "";
+export class EmailBase<Model> {
+  protected template: string = "";
+  protected model!: Model;
 
   protected options: Mail.Options = {
     from: EmailConfig.MAIL_ENTITY,
   };
 
-  constructor(protected props: EmailProps, file: string) {
-    this.file = file;
+  constructor(protected props: EmailProps) {
     this.options.to = props.to;
   };
 
-  public async prepare(data: any): Promise<void> {
-    const builder = new EmailTemplate(this.file)
-    await builder.buildHtml();
-    this.options.html = builder.getTemplate(data);
+  protected async prepare(): Promise<void> {
+    const builder = new EmailTemplate(this.template);
+    await builder.load();
+    this.options.html = builder.obtain(this.model);
   };
 
   public async send(): Promise<void> {
+    await this.prepare();
     await EmailTransport.sendMail(this.options);
   };
 };

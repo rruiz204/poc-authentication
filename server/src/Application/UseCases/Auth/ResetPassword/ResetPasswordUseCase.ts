@@ -5,7 +5,7 @@ import type { ResetPasswordResponse } from "./ResetPasswordResponse";
 
 import { HashService } from "@Services/HashService/Service";
 import { ResetPasswordSchema } from "./ResetPasswordSchema";
-import { ResetPasswordMail } from "@Emails/ResetPassword/ResetPasswordEmail";
+import { ResetPasswordEmail } from "@Emails/ResetPasswordEmail";
 
 export class ResetPasswordUseCase implements UseCase<ResetPasswordCommand, ResetPasswordResponse> {
   constructor(private uow: UnitOfWOrk) {};
@@ -24,7 +24,7 @@ export class ResetPasswordUseCase implements UseCase<ResetPasswordCommand, Reset
 
     await this.uow.token.delete({ id: existing.id });
 
-    const resetPasswordEmail = new ResetPasswordMail({
+    const resetPasswordEmail = new ResetPasswordEmail({
       to: updated.email
     });
     
