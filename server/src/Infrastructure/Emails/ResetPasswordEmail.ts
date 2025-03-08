@@ -1,6 +1,6 @@
 import { EmailBase, type EmailProps } from "./Core/EmailBase";
 
-export class ResetPasswordEmail extends EmailBase {
+export class ResetPasswordEmail extends EmailBase<{}> {
   protected template: string = "ResetPassword.mjml";
 
   constructor(props: EmailProps) {
