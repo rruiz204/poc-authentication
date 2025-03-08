@@ -19,7 +19,7 @@ export class ResetPasswordUseCase implements UseCase<ResetPasswordCommand, Reset
     const hashed = await HashService.hash(command.password);
 
     const updated = await this.uow.user.update({
-      id: existing.id, update: { password: hashed }
+      id: existing.userId, update: { password: hashed }
     });
 
     await this.uow.token.delete({ id: existing.id });
