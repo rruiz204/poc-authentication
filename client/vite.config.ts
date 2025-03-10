@@ -8,6 +8,7 @@ export default defineConfig({
   resolve: {
     alias: [
       { find: "@Routes", replacement: "/src/Core/Routes" },
+      { find: "@Stores", replacement: "/src/Core/Stores" },
       { find: "@Modules", replacement: "/src/Modules" },
     ],
   },

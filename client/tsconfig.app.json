@@ -13,6 +13,7 @@
     "baseUrl": ".",
     "paths": {
       "@Routes/*": ["src/Core/Routes/*"],
+      "@Stores/*": ["src/Core/Stores/*"],
       "@Modules/*": ["src/Modules/*"],
     }
   },
