@@ -3,5 +3,5 @@
 </script>
 
 <template>
-  <p>home page works!</p>
+  <p class="text-3xl font-bold underline">home page works!</p>
 </template>
