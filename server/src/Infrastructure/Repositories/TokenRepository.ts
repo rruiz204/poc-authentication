@@ -6,7 +6,7 @@ import type { UpsertTokenParams } from "./Params/TokenParams";
 export class TokenRepository {
   constructor(private prisma: PrismaClient) {};
 
-  public async upsert(params: UpsertTokenParams) {
+  public async upsert(params: UpsertTokenParams): Promise<Token> {
     return await this.prisma.token.upsert({
       update: { token: params.token },
       where: { userId: params.userId },
@@ -19,10 +19,10 @@ export class TokenRepository {
   };
 
   public async findByToken(token: string): Promise<Token | null> {
-    return await this.prisma.token.findFirst({ where: { token } });
+    return await this.prisma.token.findFirst({ where: { token, expires: { gt: new Date() }} });
   };
 
   public async findByUser(id: number): Promise<Token | null> {
-    return await this.prisma.token.findFirst({ where: { userId: id } });
+    return await this.prisma.token.findFirst({ where: { userId: id, expires: { gt: new Date() }} });
   };
 };
