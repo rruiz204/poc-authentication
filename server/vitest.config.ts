@@ -6,11 +6,10 @@ const excludedFiles = [
 ];
 
 export default defineConfig({
-  plugins: [],
+  plugins: [tsconfigPaths()],
   test: {
     coverage: {
       provider: "v8",
-      exclude: excludedFiles,
     },
     exclude: excludedFiles,
   },
