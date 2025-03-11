@@ -4,6 +4,7 @@ interface TokenCommonFields {
   id: Token["id"];
   token: Token["token"];
   userId: Token["userId"];
+  expires: Token["expires"];
 };
 
 export interface DeleteTokenParams {
