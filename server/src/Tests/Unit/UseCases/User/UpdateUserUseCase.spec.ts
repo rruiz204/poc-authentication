@@ -29,7 +29,7 @@ describe(("update user use case"), () => {
     vi.spyOn(uow.user, "findById").mockResolvedValue(null);
     vi.spyOn(uow.user, "update").mockResolvedValue(user1);
 
-    const user = await useCase.execute(localCommand);
-    expect(user).toBeNull();
+    await expect(useCase.execute(localCommand))
+      .rejects.toThrowError("User not found");
   });
 });

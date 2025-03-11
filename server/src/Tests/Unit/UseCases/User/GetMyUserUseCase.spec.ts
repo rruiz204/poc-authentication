@@ -24,7 +24,7 @@ describe(("get my user use case"), () => {
     const localQuery: GetMyUserQuery = { userId: 99 };
     vi.spyOn(uow.user, "findById").mockResolvedValue(null);
 
-    const user = await useCase.execute(localQuery);
-    expect(user).toBeNull();
+    await expect(useCase.execute(localQuery))
+      .rejects.toThrowError("User not found");
   });
 });
