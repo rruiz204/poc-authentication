@@ -1,5 +1,5 @@
 import tsconfigPaths from "vite-tsconfig-paths";
-import { defineConfig, configDefaults } from "vitest/config.js";
+import { defineConfig, configDefaults } from "vitest/config";
 
 const excludedFiles = [
   ...configDefaults.exclude,
