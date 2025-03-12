@@ -11,7 +11,7 @@ describe(("get my user use case"), () => {
   const uow = new UnitOfWOrk(Context);
   const useCase = new GetMyUserUseCase(uow);
 
-  it("positive", async () => {
+  it("should return the user when found by ID", async () => {
     const user1 = await UserFactory.build({ id: 1, password: "12345678" });
     const localQuery: GetMyUserQuery = {  userId: user1.id };
     vi.spyOn(uow.user, "findById").mockResolvedValue(user1);
@@ -20,7 +20,7 @@ describe(("get my user use case"), () => {
     expect(user.id).toEqual(user1.id);
   });
 
-  it("negative", async () => {
+  it("should throw an error when the user is not found", async () => {
     const localQuery: GetMyUserQuery = { userId: 99 };
     vi.spyOn(uow.user, "findById").mockResolvedValue(null);
 

@@ -12,7 +12,7 @@ describe(("update user use case"), () => {
   const uow = new UnitOfWOrk(Context);
   const useCase = new RegisterUserUseCase(uow);
 
-  it("positive", async () => {
+  it("should successfully register a new user and return a token", async () => {
     const user1 = await UserFactory.build({ id: 1, password: "12345678" });
     const command: RegisterUserCommand = { ...user1 };
 
@@ -24,7 +24,7 @@ describe(("update user use case"), () => {
     expect(response.token).toEqual("mocked token");
   });
 
-  it("negative", async () => {
+  it("should throw an error when the user already exists", async () => {
     const user1 = await UserFactory.build({ id: 1, password: "12345678" });
     const command: RegisterUserCommand = { ...user1 };
 

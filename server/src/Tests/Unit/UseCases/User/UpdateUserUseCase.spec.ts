@@ -11,7 +11,7 @@ describe(("update user use case"), () => {
   const uow = new UnitOfWOrk(Context);
   const useCase = new UpdateUserUseCase(uow);
 
-  it("positive", async () => {
+  it("should successfully update the user when found", async () => {
     const user1 = await UserFactory.build({ id: 1, password: "12345678" });
     const localCommand: UpdateUserCommand = { ...user1 };
 
@@ -22,7 +22,7 @@ describe(("update user use case"), () => {
     expect(user.email).toEqual(user1.email);
   });
 
-  it("negative", async () => {
+  it("should throw an error when the user to update is not found", async () => {
     const user1 = await UserFactory.build({ id: 1, password: "12345678" });
     const localCommand: UpdateUserCommand = { ...user1 };
 
