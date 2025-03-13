@@ -7,7 +7,6 @@ import { HashService } from "@Services/HashService/Service";
 import { UserFactory } from "@Database/Factories/UserFactory";
 
 import { SimpleAuthUseCase } from "@UseCases/Auth/SimpleAuth/SimpleAuthUseCase";
-import type { SimpleAuthCommand } from "@UseCases/Auth/SimpleAuth/SimpleAuthCommand";
 
 describe(("simple authentication use case"), () => {
   const uow = new UnitOfWOrk(Context);
@@ -15,34 +14,30 @@ describe(("simple authentication use case"), () => {
 
   it("should return a valid token when authentication is successful", async () => {
     const user1 = await UserFactory.build({ id: 1, password: "12345678" });
-    const command: SimpleAuthCommand = { ...user1 };
 
     vi.spyOn(JwtService, "sign").mockResolvedValue("mocked token");
     vi.spyOn(uow.user, "findByEmail").mockResolvedValue(user1);
     vi.spyOn(HashService, "verify").mockResolvedValue(true);
 
-    const response = await useCase.execute(command);
+    const response = await useCase.execute({ ...user1 });
     expect(response.token).toEqual("mocked token");
   });
 
   it("should throw an error when the user is not found", async () => {
     const user1 = await UserFactory.build({ id: 1, password: "12345678" });
-    const command: SimpleAuthCommand = { ...user1 };
-
     vi.spyOn(uow.user, "findByEmail").mockResolvedValue(null);
 
-    await expect(useCase.execute(command))
+    await expect(useCase.execute({ ...user1 }))
       .rejects.toThrowError("User not found");
   });
 
   it("should throw an error when the password is incorrect", async () => {
     const user1 = await UserFactory.build({ id: 1, password: "12345678" });
-    const command: SimpleAuthCommand = { ...user1 };
 
     vi.spyOn(uow.user, "findByEmail").mockResolvedValue(user1);
     vi.spyOn(HashService, "verify").mockResolvedValue(false);
 
-    await expect(useCase.execute(command))
+    await expect(useCase.execute({ ...user1 }))
       .rejects.toThrowError("Invalid password");
   });
 });
