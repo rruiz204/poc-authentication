@@ -1,5 +1,6 @@
 import path from "path";
 import mjml2html from "mjml";
+import fs from "fs/promises";
 import Handlebars from "handlebars";
 
 export class EmailTemplate {
@@ -12,7 +13,7 @@ export class EmailTemplate {
   };
 
   public async load(): Promise<void> {
-    this.mjml = await Bun.file(this.file).text();
+    this.mjml = await fs.readFile(this.file, "utf-8");
     this.html = mjml2html(this.mjml).html;
   };
 
