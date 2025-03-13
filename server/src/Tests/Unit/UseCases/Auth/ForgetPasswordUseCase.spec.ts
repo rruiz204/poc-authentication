@@ -29,8 +29,7 @@ describe("forget password use case", () => {
     expect(ForgetPasswordEmail.prototype.send).toHaveBeenCalled();
 
     expect(uow.token.upsert).toHaveBeenCalledWith({
-      token: token1.token,
-      userId: user1.id,
+      token: token1.token, userId: user1.id,
     });
   });
 
