@@ -8,7 +8,7 @@ import { ResetPasswordSchema } from "./ResetPasswordSchema";
 import { ResetPasswordEmail } from "@Emails/ResetPasswordEmail";
 
 export class ResetPasswordUseCase implements UseCase<ResetPasswordCommand, ResetPasswordResponse> {
-  constructor(private uow: UnitOfWOrk) {};
+  constructor(private uow: UnitOfWOrk) { };
 
   public async execute(command: ResetPasswordCommand): Promise<ResetPasswordResponse> {
     await ResetPasswordSchema.validate(command);
@@ -19,16 +19,16 @@ export class ResetPasswordUseCase implements UseCase<ResetPasswordCommand, Reset
     const hashed = await HashService.hash(command.password);
 
     const updated = await this.uow.user.update({
-      id: existing.userId, update: { password: hashed }
+      id: existing.userId, update: { password: hashed },
     });
 
     await this.uow.token.delete({ id: existing.id });
 
     const resetPasswordEmail = new ResetPasswordEmail({
-      to: updated.email
+      to: updated.email,
     });
-    
+
     await resetPasswordEmail.send();
-    return { message: "Passwored updated" };
+    return { message: "Password updated" };
   };
 };

@@ -19,10 +19,16 @@ export class TokenRepository {
   };
 
   public async findByToken(token: string): Promise<Token | null> {
-    return await this.prisma.token.findFirst({ where: { token, expires: { gt: new Date() }} });
+    return await this.prisma.token.findFirst({ where: {
+      token: { equals: token },
+      expires: { gt: new Date() },
+    }});
   };
 
   public async findByUser(id: number): Promise<Token | null> {
-    return await this.prisma.token.findFirst({ where: { userId: id, expires: { gt: new Date() }} });
+    return await this.prisma.token.findFirst({ where: {
+      userId: { equals: id },
+      expires: { gt: new Date() },
+    }});
   };
 };
