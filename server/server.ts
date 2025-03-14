@@ -12,6 +12,7 @@ await apollo.start();
 const bootstrap = new Bootstrap(app);
 bootstrap.addMiddlewares();
 bootstrap.addRouters();
+bootstrap.addLogging();
 bootstrap.addExceptionHandler();
 bootstrap.addApollo(apollo.instance);
 
