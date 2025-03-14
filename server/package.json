@@ -7,6 +7,7 @@
     "prisma:seed": "prisma db seed",
     "prisma:studio": "prisma studio",
     "prisma:migrate:main": "prisma migrate dev",
+    "prisma:migrate:test": "prisma migrate dev",
     "test:unit": "vitest",
     "test:unit:coverage": "vitest --coverage"
   },
