@@ -18,6 +18,6 @@ export class UserSeeder implements Seeder {
       password: "12345678"
     });
 
-    await this.repository.create({ ...admin });
+    await this.repository.create({ create: { ...admin } });
   };
 };
