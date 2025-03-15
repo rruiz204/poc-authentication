@@ -1,1 +1,1 @@
-### POC Authentication
+### Authentication
