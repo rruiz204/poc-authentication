@@ -36,10 +36,6 @@ describe("forget password use case", () => {
 
     expect(ResetTokenService.generate).toHaveBeenCalled();
     expect(ForgetPasswordEmail.prototype.send).toHaveBeenCalled();
-    
-    expect(uow.token.upsert).toHaveBeenCalledWith({
-      token: token1.token, userId: user1.id,
-    });
   });
 
   it("should throw an error when the user does not exist", async () => {

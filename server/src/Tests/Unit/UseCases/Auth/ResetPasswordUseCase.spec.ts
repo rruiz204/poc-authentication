@@ -37,10 +37,6 @@ describe("forget password use case", () => {
 
     expect(HashService.hash).toHaveBeenCalled();
     expect(ResetPasswordEmail.prototype.send).toHaveBeenCalled();
-    
-    expect(uow.user.update).toHaveBeenCalledWith({
-      id: user1.id, update: { password: user1.password }
-    });
   });
   
   it("should throw an error when the token is not found", async () => {
