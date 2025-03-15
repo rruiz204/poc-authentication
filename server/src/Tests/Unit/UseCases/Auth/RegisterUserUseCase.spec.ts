@@ -3,7 +3,7 @@ import { describe, expect, it, vi, beforeEach } from "vitest";
 import type { User } from "@prisma/client";
 
 import { Context } from "@Database/Core/Context";
-import { JwtService } from "@Services/JwtService";
+import { JwtService } from "@Services/Jwt/JwtService";
 import { UnitOfWOrk } from "@Database/Core/UnitOfWork";
 import { UserFactory } from "@Database/Factories/UserFactory";
 
