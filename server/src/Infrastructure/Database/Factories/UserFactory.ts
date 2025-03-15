@@ -1,6 +1,6 @@
 import { faker } from "@faker-js/faker";
 import type { User } from "@prisma/client";
-import { HashService } from "@Services/HashService/Service";
+import { HashService } from "@Services/HashService";
 
 interface FactoryArgs {
   id: number;
