@@ -9,6 +9,8 @@ describe(("get my user use case"), () => {
   const uow = new UnitOfWOrk(Context);
   const useCase = new GetMyUserUseCase(uow);
 
+  // ======================== Tests Section ============================
+
   it("should return the user when found by ID", async () => {
     const user1 = await UserFactory.build({ id: 1, password: "12345678" });
     vi.spyOn(uow.user, "findById").mockResolvedValue(user1);
