@@ -14,4 +14,5 @@ export interface DeleteTokenParams {
 export interface UpsertTokenParams {
   token: TokenCommonFields["token"];
   userId: TokenCommonFields["userId"];
+  expires: TokenCommonFields["expires"];
 };

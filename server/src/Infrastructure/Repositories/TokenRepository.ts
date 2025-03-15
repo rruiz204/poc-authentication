@@ -10,7 +10,7 @@ export class TokenRepository {
     return await this.prisma.token.upsert({
       update: { token: params.token },
       where: { userId: params.userId },
-      create: { token: params.token, userId: params.userId }
+      create: { token: params.token, userId: params.userId, expires: params.expires }
     });
   };
 
