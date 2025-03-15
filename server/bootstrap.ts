@@ -2,7 +2,7 @@ import { json } from "body-parser";
 import { ApolloServer } from "@apollo/server";
 import { AuthRouter } from "@Routers/AuthRouter";
 import { expressMiddleware } from "@apollo/server/express4";
-
+import { GraphQLContextFactory } from "@Graphql/Core/GraphQLContextFactory";
 import { ExceptionHandlerMiddleware } from "@Middlewares/ExceptionHandlerMiddleware";
 
 import type { Express } from "express";
@@ -25,9 +25,9 @@ export class Bootstrap {
 
   public addApollo(apollo: ApolloServer<GraphQLContext>): void {
     this.app.use("/graphql", expressMiddleware(apollo, {
-      context: async ({ req }): Promise<GraphQLContext> => ({
-        token: req.headers.authorization || "",
-      }),
+      context: async ({ req }): Promise<GraphQLContext> => {
+        return await GraphQLContextFactory.build(req);
+      }
     }));
   };
 };
