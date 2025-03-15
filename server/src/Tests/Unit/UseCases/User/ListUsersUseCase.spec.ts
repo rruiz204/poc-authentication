@@ -10,6 +10,8 @@ describe(("list all users use case"), () => {
   const useCase = new ListUsersUseCase(uow);
   const pagination = { page: 1, limit: 10 };
 
+  // ======================== Tests Section ============================
+
   it("should return all users when products exist", async () => {
     const user1 = await UserFactory.build({ id: 1, password: "12345678" });
     const user2 = await UserFactory.build({ id: 2, password: "12345678" });
