@@ -11,7 +11,6 @@ const UserInputs = `#graphql
   input ListUsersInput {
     page: Int!
     limit: Int!
-    name: String
   }
 
   input UpdateUserInput {
