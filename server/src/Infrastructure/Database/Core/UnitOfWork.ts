@@ -1,6 +1,6 @@
 import type { PrismaClient } from "@prisma/client";
-import { UserRepository } from "@Repositories/UserRepository";
-import { TokenRepository } from "@Repositories/TokenRepository";
+import { UserRepository } from "@Repositories/User/UserRepository";
+import { TokenRepository } from "@Repositories/Token/TokenRepository";
 
 export class UnitOfWOrk {
   public user: UserRepository;

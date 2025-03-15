@@ -1,7 +1,8 @@
 import { PrismaClient, type Token } from "@prisma/client";
 
-import type { DeleteTokenParams } from "./Params/TokenParams";
-import type { UpsertTokenParams } from "./Params/TokenParams";
+import type { 
+  DeleteTokenParams, UpsertTokenParams
+} from "./TokenParams";
 
 export class TokenRepository {
   constructor(private prisma: PrismaClient) {};

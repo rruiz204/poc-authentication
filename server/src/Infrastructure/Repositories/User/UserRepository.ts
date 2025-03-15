@@ -1,9 +1,9 @@
 import { PrismaClient, type User } from "@prisma/client";
 
-import type { ListUsersParams } from "./Params/UserParams";
-import type { CreateUserParams } from "./Params/UserParams";
-import type { UpdateUserParams } from "./Params/UserParams";
-import type { DeleteUserParams } from "./Params/UserParams";
+import type { 
+  ListUsersParams, CreateUserParams,
+  UpdateUserParams, DeleteUserParams,
+} from "./UserParams";
 
 export class UserRepository {
   constructor(private prisma: PrismaClient) {};
