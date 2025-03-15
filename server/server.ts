@@ -3,6 +3,8 @@ import { Apollo } from "apollo";
 import { createServer } from "http";
 import { Bootstrap } from "bootstrap";
 
+import { ExpressConfig } from "@Configs/ExpressConfig";
+
 const app = express();
 const server = createServer(app);
 
@@ -16,5 +18,5 @@ bootstrap.addLogging();
 bootstrap.addExceptionHandler();
 bootstrap.addApollo(apollo.instance);
 
-await new Promise<void>((resolve) => server.listen({ port: 3000 }, resolve));
-console.log(`🚀 Server ready at http://localhost:3000/graphql`);
+await new Promise<void>((resolve) => server.listen({ port: ExpressConfig.EXPRESS_PORT }, resolve));
+console.log(`🚀 Server ready at http://localhost:${ExpressConfig.EXPRESS_PORT}/graphql`);
