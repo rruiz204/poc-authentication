@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { Context } from "@Database/Context";
-import { UnitOfWOrk } from "@Database/UnitOfWork";
+import { Context } from "@Database/Core/Context";
+import { UnitOfWOrk } from "@Database/Core/UnitOfWork";
 import { UserFactory } from "@Database/Factories/UserFactory";
 import { GetMyUserUseCase } from "@UseCases/User/GetMyUser/GetMyUserUseCase";
 

@@ -1,5 +1,5 @@
 import type { UseCase } from "@UseCases/UseCase";
-import type { UnitOfWOrk } from "@Database/UnitOfWork";
+import type { UnitOfWOrk } from "@Database/Core/UnitOfWork";
 import type { ForgetPasswordCommand } from "./ForgetPasswordCommand";
 import type { ForgetPasswordResponse } from "./ForgetPasswordResponse";
 

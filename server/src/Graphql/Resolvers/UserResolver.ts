@@ -1,5 +1,5 @@
-import { Context } from "@Database/Context";
-import { UnitOfWOrk } from "@Database/UnitOfWork";
+import { Context } from "@Database/Core/Context";
+import { UnitOfWOrk } from "@Database/Core/UnitOfWork";
 import type { GraphQLContext } from "@Graphql/GraphQLContext";
 
 import type { GetMyUserDTO } from "@UseCases/User/GetMyUser/GetMyUserDTO";

@@ -1,7 +1,7 @@
 import type { UserDTO } from "@DTOs/UserDTO";
 import type { UseCase } from "@UseCases/UseCase";
 import type { ListUsersQuery } from "./ListUsersQuery";
-import type { UnitOfWOrk } from "@Database/UnitOfWork";
+import type { UnitOfWOrk } from "@Database/Core/UnitOfWork";
 
 export class ListUsersUseCase implements UseCase<ListUsersQuery, UserDTO[]> {
   constructor(private uow: UnitOfWOrk) {};

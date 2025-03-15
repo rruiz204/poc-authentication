@@ -1,6 +1,6 @@
 import type { AuthDTO } from "@DTOs/AuthDTO";
 import type { UseCase } from "@UseCases/UseCase";
-import type { UnitOfWOrk } from "@Database/UnitOfWork";
+import type { UnitOfWOrk } from "@Database/Core/UnitOfWork";
 import type { RegisterUserCommand } from "./RegisterUserCommand";
 
 import { RegisterUserSchema } from "./RegisterUserSchema";

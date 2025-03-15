@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { Context } from "@Database/Context";
-import { UnitOfWOrk } from "@Database/UnitOfWork";
+import { Context } from "@Database/Core/Context";
+import { UnitOfWOrk } from "@Database/Core/UnitOfWork";
 import { AuthController } from "@Controllers/AuthController";
 
 import { SimpleAuthUseCase } from "@UseCases/Auth/SimpleAuth/SimpleAuthUseCase";

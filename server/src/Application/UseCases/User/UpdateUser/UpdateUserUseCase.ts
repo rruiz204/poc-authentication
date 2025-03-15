@@ -1,6 +1,6 @@
 import type { UserDTO } from "@DTOs/UserDTO";
 import type { UseCase } from "@UseCases/UseCase";
-import type { UnitOfWOrk } from "@Database/UnitOfWork";
+import type { UnitOfWOrk } from "@Database/Core/UnitOfWork";
 import type { UpdateUserCommand } from "./UpdateUserCommand";
 
 import { UpdateUserSchema } from "./UpdateUserSchema";

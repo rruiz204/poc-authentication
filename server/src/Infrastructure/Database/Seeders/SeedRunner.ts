@@ -1,5 +1,5 @@
 import type { Seeder } from "./Seeder";
-import { Context } from "@Database/Context";
+import { Context } from "@Database/Core/Context";
 
 import { UserSeeder } from "./UserSeeder";
 import { UserRepository } from "@Repositories/UserRepository";
