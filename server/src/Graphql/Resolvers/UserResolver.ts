@@ -23,7 +23,7 @@ export const UserResolver = {
     },
 
     getMyUser: async (parent: unknown, args: GetMyUserDTO, context: GraphQLContext) => {
-      return await getMyUserUseCase.execute({ user: context.user });
+      return await getMyUserUseCase.execute({ userId: context.user });
     },
   },
   Mutation: {
