@@ -3,7 +3,7 @@ import { EmailTemplate } from "./EmailTemplate";
 import { EmailTransport } from "./EmailTransport";
 import { EmailConfig } from "@Configs/EmailConfig";
 
-export interface EmailProps {
+export interface BaseEmailProps {
   to: string;
 };
 
@@ -15,7 +15,7 @@ export class EmailBase<Model> {
     from: EmailConfig.MAIL_ENTITY,
   };
 
-  constructor(protected props: EmailProps) {
+  constructor(protected props: BaseEmailProps) {
     this.options.to = props.to;
   };
 

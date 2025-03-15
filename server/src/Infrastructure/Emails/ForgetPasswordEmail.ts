@@ -1,15 +1,18 @@
-import { EmailBase, type EmailProps } from "./Core/EmailBase";
-import type { ForgetPasswordModel } from "./Models/ForgetPasswordModel";
+import { EmailBase, type BaseEmailProps } from "./Core/EmailBase";
 
-interface LocalEmailProps extends EmailProps, ForgetPasswordModel {};
+interface EmailModel {
+  token: string;
+};
 
-export class ForgetPasswordEmail extends EmailBase<ForgetPasswordModel> {
+type EmailProps = BaseEmailProps & EmailModel;
+
+export class ForgetPasswordEmail extends EmailBase<EmailModel> {
   protected template: string = "ForgetPassword.mjml";
 
-  constructor(props: LocalEmailProps) {
+  constructor(props: EmailProps) {
     super(props);
 
-    this.model = { token: props.token };
+    this.model = { ...props };
     this.options.subject = "Forget Password";
   };
 };
