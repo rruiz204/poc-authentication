@@ -3,7 +3,7 @@ import type { UnitOfWOrk } from "@Database/Core/UnitOfWork";
 import type { ResetPasswordCommand } from "./ResetPasswordCommand";
 import type { ResetPasswordResponse } from "./ResetPasswordResponse";
 
-import { HashService } from "@Services/HashService/Service";
+import { HashService } from "@Services/HashService";
 import { ResetPasswordSchema } from "./ResetPasswordSchema";
 import { ResetPasswordEmail } from "@Emails/ResetPasswordEmail";
 

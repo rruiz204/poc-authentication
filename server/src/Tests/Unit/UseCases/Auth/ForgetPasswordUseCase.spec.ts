@@ -6,8 +6,8 @@ import { Context } from "@Database/Core/Context";
 import { UnitOfWOrk } from "@Database/Core/UnitOfWork";
 import { UserFactory } from "@Database/Factories/UserFactory";
 import { TokenFactory } from "@Database/Factories/TokenFactory";
+import { ResetTokenService } from "@Services/ResetTokenService";
 import { ForgetPasswordEmail } from "@Emails/ForgetPasswordEmail";
-import { ResetTokenService } from "@Services/ResetTokenService/Service";
 
 import { ForgetPasswordUseCase } from "@UseCases/Auth/ForgetPassword/ForgetPasswordUseCase";
 

@@ -4,8 +4,8 @@ import type { ForgetPasswordCommand } from "./ForgetPasswordCommand";
 import type { ForgetPasswordResponse } from "./ForgetPasswordResponse";
 
 import { ForgetPasswordSchema } from "./ForgetPasswordSchema";
+import { ResetTokenService } from "@Services/ResetTokenService";
 import { ForgetPasswordEmail } from "@Emails/ForgetPasswordEmail";
-import { ResetTokenService } from "@Services/ResetTokenService/Service";
 
 export class ForgetPasswordUseCase implements UseCase<ForgetPasswordCommand, ForgetPasswordResponse> {
   constructor(private uow: UnitOfWOrk) {};

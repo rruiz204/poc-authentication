@@ -3,9 +3,9 @@ import type { UseCase } from "@UseCases/UseCase";
 import type { UnitOfWOrk } from "@Database/Core/UnitOfWork";
 import type { SimpleAuthCommand } from "./SimpleAuthCommand";
 
+import { JwtService } from "@Services/JwtService";
+import { HashService } from "@Services/HashService";
 import { SimpleAuthSchema } from "./SimpleAuthSchema";
-import { JwtService } from "@Services/JwtService/Service";
-import { HashService } from "@Services/HashService/Service";
 
 export class SimpleAuthUseCase implements UseCase<SimpleAuthCommand, AuthDTO> {
   constructor(private uow: UnitOfWOrk) {};

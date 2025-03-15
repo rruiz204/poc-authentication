@@ -3,9 +3,9 @@ import { describe, expect, it, vi, beforeEach } from "vitest";
 import type { User } from "@prisma/client";
 
 import { Context } from "@Database/Core/Context";
+import { JwtService } from "@Services/JwtService";
+import { HashService } from "@Services/HashService";
 import { UnitOfWOrk } from "@Database/Core/UnitOfWork";
-import { JwtService } from "@Services/JwtService/Service";
-import { HashService } from "@Services/HashService/Service";
 import { UserFactory } from "@Database/Factories/UserFactory";
 
 import { SimpleAuthUseCase } from "@UseCases/Auth/SimpleAuth/SimpleAuthUseCase";

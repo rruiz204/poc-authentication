@@ -3,8 +3,8 @@ import { describe, expect, it, vi, beforeEach } from "vitest";
 import type { User, Token } from "@prisma/client";
 
 import { Context } from "@Database/Core/Context";
+import { HashService } from "@Services/HashService";
 import { UnitOfWOrk } from "@Database/Core/UnitOfWork";
-import { HashService } from "@Services/HashService/Service";
 import { UserFactory } from "@Database/Factories/UserFactory";
 import { TokenFactory } from "@Database/Factories/TokenFactory";
 import { ResetPasswordEmail } from "@Emails/ResetPasswordEmail";

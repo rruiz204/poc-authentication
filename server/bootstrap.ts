@@ -1,12 +1,12 @@
 import { json } from "body-parser";
 import { ApolloServer } from "@apollo/server";
 import { AuthRouter } from "@Routers/AuthRouter";
+import { LoggerService } from "@Services/LoggerService";
 import { expressMiddleware } from "@apollo/server/express4";
 import { AuthMiddleware } from "@Middlewares/AuthMiddleware";
+
 import type { GraphQLContext } from "@Graphql/GraphQLContext";
-import { LoggerService } from "@Services/LoggingService/Service";
 import type { Express, Request, Response, NextFunction } from "express";
-import { RestLoggerOptions } from "@Services/LoggingService/RestLoggerOptions";
 
 export class Bootstrap {
   constructor(private app: Express) {};
@@ -21,7 +21,7 @@ export class Bootstrap {
 
   public addLogging(): void {
     this.app.use((req: Request, res: Response, next: NextFunction) => {
-      const logger = LoggerService.getLogger(RestLoggerOptions);
+      const logger = new LoggerService("logs/rest.log").getLogger();
       logger.info(`${req.method} ${req.url}`);
       next();
     });

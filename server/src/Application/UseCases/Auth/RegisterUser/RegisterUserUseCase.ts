@@ -3,9 +3,9 @@ import type { UseCase } from "@UseCases/UseCase";
 import type { UnitOfWOrk } from "@Database/Core/UnitOfWork";
 import type { RegisterUserCommand } from "./RegisterUserCommand";
 
+import { JwtService } from "@Services/JwtService";
+import { HashService } from "@Services/HashService";
 import { RegisterUserSchema } from "./RegisterUserSchema";
-import { JwtService } from "@Services/JwtService/Service";
-import { HashService } from "@Services/HashService/Service";
 
 export class RegisterUserUseCase implements UseCase<RegisterUserCommand, AuthDTO> {
   constructor(private uow: UnitOfWOrk) {};
