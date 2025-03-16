@@ -1,13 +1,13 @@
 import http from "http";
 import { ApolloServer } from "@apollo/server";
-
 import type { ApolloServerPlugin } from "@apollo/server";
 import type { GraphQLContext } from "@Graphql/Core/GraphQLContext";
 
-import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
-
 import { UserGraphQL } from "@Graphql/Schema/UserGraphQL";
 import { UserResolver } from "@Graphql/Resolvers/UserResolver";
+
+import { ApolloServerPluginLogging } from "@Graphql/Plugins/ApolloServerPluginLogging";
+import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
 
 export class Apollo {
   private plugins: ApolloServerPlugin[] = [];
@@ -18,7 +18,8 @@ export class Apollo {
     plugins: this.plugins,
   });
 
-  constructor(private server: http.Server) {
+  constructor(server: http.Server) {
+    this.addPlugin(ApolloServerPluginLogging);
     this.addPlugin(ApolloServerPluginDrainHttpServer({ httpServer: server }));
   };
 
