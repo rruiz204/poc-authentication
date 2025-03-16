@@ -3,8 +3,8 @@ import type { UseCase } from "@UseCases/UseCase";
 import type { UnitOfWOrk } from "@Database/Core/UnitOfWork";
 import type { RegisterUserCommand } from "./RegisterUserCommand";
 
-import { JwtService } from "@Services/JwtService";
-import { HashService } from "@Services/HashService";
+import { JwtService } from "@Services/Jwt/JwtService";
+import { HashService } from "@Services/Hash/HashService";
 import { RegisterUserSchema } from "./RegisterUserSchema";
 
 export class RegisterUserUseCase implements UseCase<RegisterUserCommand, AuthDTO> {
