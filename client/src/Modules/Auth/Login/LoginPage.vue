@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-
+import LoginForm from './LoginForm.vue';
 </script>
 
 <template>
   <div>
-    <p>login page works!</p>
+    <LoginForm />
   </div>
 </template>
