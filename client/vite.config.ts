@@ -7,6 +7,7 @@ export default defineConfig({
   plugins: [vue(), tailwindcss()],
   resolve: {
     alias: [
+      { find: "@Common", replacement: "/src/Components/Common" },
       { find: "@Routes", replacement: "/src/Core/Routes" },
       { find: "@Stores", replacement: "/src/Core/Stores" },
       { find: "@Modules", replacement: "/src/Modules" },

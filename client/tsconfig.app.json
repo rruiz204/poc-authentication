@@ -12,6 +12,7 @@
 
     "baseUrl": ".",
     "paths": {
+      "@Common/*": ["src/Components/Common/*"],
       "@Routes/*": ["src/Core/Routes/*"],
       "@Stores/*": ["src/Core/Stores/*"],
       "@Modules/*": ["src/Modules/*"],
