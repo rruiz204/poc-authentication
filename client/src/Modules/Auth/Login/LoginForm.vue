@@ -7,6 +7,8 @@ import { Form } from "@primevue/forms";
 
 import Field from "@Common/Atoms/Field.vue";
 import { LoginSchema } from "./LoginSchema";
+import LoginOptions from "./LoginOptions.vue";
+import LoginSocial from "./LoginSocial.vue";
 import { FormMessages } from "../Shared/FormMessages";
 
 const responsive = {
@@ -15,7 +17,7 @@ const responsive = {
 </script>
 
 <template>
-  <Form v-slot="$form" :resolver="LoginSchema" :class="`h-fit flex flex-col gap-6 ${responsive.form}`">
+  <Form v-slot="$form" :resolver="LoginSchema" :class="`h-fit flex flex-col gap-4 ${responsive.form}`">
     <Field 
       :error="$form.email?.error?.message"
       :pristine="$form.email?.pristine"
@@ -36,8 +38,14 @@ const responsive = {
       <Password name="password" placeholder="Password" :feedback="false" fluid toggle-mask />
     </Field>
 
-    <Divider />
+    <LoginOptions/>
 
     <Button type="submit" severity="secondary" label="Login" />
+
+    <Divider align="center">
+      <b>OR</b>
+    </Divider>
+
+    <LoginSocial />
   </Form>
 </template>
