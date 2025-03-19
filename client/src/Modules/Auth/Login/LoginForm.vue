@@ -7,20 +7,10 @@ import { Form } from "@primevue/forms";
 
 import Field from "@Common/Atoms/Field.vue";
 import { LoginSchema } from "./LoginSchema";
+import { FormMessages } from "../Shared/FormMessages";
 
 const responsive = {
   form: "w-full max-w-sm md:max-w-md lg:max-w-l",
-};
-
-const messages = {
-  email: {
-    success: "You're good to go! The email you entered is valid.",
-    help: "Please enter a valid email address. (ej: usuario@dominio.com).",
-  },
-  password: {
-    success: "Valid password! Meets all security requirements.",
-    help: "Please enter a valid password. (e.g. !, @, #, $).",
-  },
 };
 </script>
 
@@ -31,9 +21,9 @@ const messages = {
       :pristine="$form.email?.pristine"
       :invalid="$form.email?.invalid"
 
-      :success="messages.email.success"
-      :help="messages.email.help">
-      <InputText name="email" type="email" fluid />
+      :success="FormMessages.email.success"
+      :help="FormMessages.email.help">
+      <InputText name="email" placeholder="Email" type="email" fluid />
     </Field>
 
     <Field
@@ -41,8 +31,8 @@ const messages = {
       :pristine="$form.password?.pristine"
       :invalid="$form.password?.invalid"
         
-      :success="messages.password.success"
-      :help="messages.password.help">
+      :success="FormMessages.password.success"
+      :help="FormMessages.password.help">
       <Password name="password" placeholder="Password" :feedback="false" fluid toggle-mask />
     </Field>
 
