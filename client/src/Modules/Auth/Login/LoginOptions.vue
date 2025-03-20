@@ -5,10 +5,12 @@ import { Checkbox } from "primevue";
 <template>
   <div class="flex justify-between">
     <div class="flex items-center gap-2">
-      <Checkbox binary input-id="remember" name="remember" size="large" />
-      <label for="remember" class="font-light">Remember</label>
+      <Checkbox binary input-id="remember" name="remember" size="small" />
+      <label for="remember" class="font-light text-sm">Remember</label>
     </div>
-
-    <p class="font-light underline underline-offset-4 cursor-pointer">Create an account in minutes</p>
+    
+    <RouterLink to="/register" class="font-light text-sm underline underline-offset-4 cursor-pointer">
+      Create an account in minutes
+    </RouterLink>
   </div>
 </template>
