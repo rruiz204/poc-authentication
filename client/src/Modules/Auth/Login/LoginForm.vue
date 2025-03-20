@@ -6,9 +6,10 @@ import { InputText } from "primevue";
 import { Form } from "@primevue/forms";
 
 import Field from "@Common/Atoms/Field.vue";
-import { LoginSchema } from "./LoginSchema";
 import LoginOptions from "./LoginOptions.vue";
-import LoginSocial from "./LoginSocial.vue";
+import SocialButtons from "../Shared/SocialButtons.vue";
+
+import { LoginSchema } from "./LoginSchema";
 import { FormMessages } from "../Shared/FormMessages";
 
 const responsive = {
@@ -39,13 +40,9 @@ const responsive = {
     </Field>
 
     <LoginOptions/>
-
     <Button type="submit" severity="secondary" label="Login" />
 
-    <Divider align="center">
-      <b>OR</b>
-    </Divider>
-
-    <LoginSocial />
+    <Divider />
+    <SocialButtons />
   </Form>
 </template>
