@@ -6,6 +6,9 @@ import { InputText } from "primevue";
 import { Form } from "@primevue/forms";
 
 import Field from "@Common/Atoms/Field.vue";
+import RegisterOptions from "./RegisterOptions.vue";
+import SocialButtons from "../Shared/SocialButtons.vue";
+
 import { RegisterSchema } from "./RegisterSchema";
 import { FormMessages } from "../Shared/FormMessages";
 
@@ -15,7 +18,7 @@ const responsive = {
 </script>
 
 <template>
-  <Form v-slot="$form" :resolver="RegisterSchema" :class="`h-fit flex flex-col gap-6 ${responsive.form}`">
+  <Form v-slot="$form" :resolver="RegisterSchema" :class="`h-fit flex flex-col gap-4 ${responsive.form}`">
     <Field 
       :error="$form.name?.error?.message"
       :pristine="$form.name?.pristine"
@@ -46,8 +49,10 @@ const responsive = {
       <Password name="password" placeholder="Password" :feedback="false" fluid toggle-mask />
     </Field>
 
-    <Divider />
-    
+    <RegisterOptions />
     <Button type="submit" severity="secondary" label="Register" />
+
+    <Divider />
+    <SocialButtons />
   </Form>
 </template>
