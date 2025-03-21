@@ -9,8 +9,8 @@ import Field from "@Common/Atoms/Field.vue";
 import RegisterOptions from "./RegisterOptions.vue";
 import SocialButtons from "../Shared/SocialButtons.vue";
 
-import { RegisterSchema } from "./RegisterSchema";
 import { FormMessages } from "../Shared/FormMessages";
+import { RegisterSchema } from "@Schemas/RegisterSchema";
 
 const responsive = {
   form: "w-full max-w-sm md:max-w-md lg:max-w-l",

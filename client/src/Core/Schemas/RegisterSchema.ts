@@ -1,6 +1,6 @@
 import * as yup from "yup";
-import { FormMessages } from "../Shared/FormMessages";
 import { yupResolver } from "@primevue/forms/resolvers/yup";
+import { FormMessages } from "@Modules/Auth/Shared/FormMessages";
 
 const schema = yup.object({
   name: yup.string()
@@ -16,3 +16,4 @@ const schema = yup.object({
 });
 
 export const RegisterSchema = yupResolver(schema);
+export type RegisterTyping = yup.InferType<typeof schema>;

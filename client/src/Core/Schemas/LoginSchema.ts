@@ -1,6 +1,6 @@
 import * as yup from "yup";
-import { FormMessages } from "../Shared/FormMessages";
 import { yupResolver } from "@primevue/forms/resolvers/yup";
+import { FormMessages } from "@Modules/Auth/Shared/FormMessages";
 
 const schema = yup.object({
   email: yup.string()
@@ -12,3 +12,4 @@ const schema = yup.object({
 });
 
 export const LoginSchema = yupResolver(schema);
+export type LoginTyping = yup.InferType<typeof schema>;
