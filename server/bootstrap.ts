@@ -1,3 +1,4 @@
+import cors from "cors";
 import { json } from "body-parser";
 import { ApolloServer } from "@apollo/server";
 
@@ -26,6 +27,7 @@ export class Bootstrap {
   };
 
   public addMiddlewares(): void {
+    this.app.use(cors());
     this.app.use(json());
   };
 
