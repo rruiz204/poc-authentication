@@ -13,9 +13,12 @@
     "baseUrl": ".",
     "paths": {
       "@Common/*": ["src/Components/Common/*"],
+      "@Services/*": ["src/Core/Services/*"],
       "@Helpers/*": ["src/Core/Helpers/*"],
+      "@Schemas/*": ["src/Core/Schemas/*"],
       "@Routes/*": ["src/Core/Routes/*"],
       "@Stores/*": ["src/Core/Stores/*"],
+      "@Hooks/*": ["src/Core/Hooks/*"],
       "@Modules/*": ["src/Modules/*"],
     }
   },
