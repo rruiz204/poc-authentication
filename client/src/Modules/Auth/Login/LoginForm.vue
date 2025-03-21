@@ -9,8 +9,19 @@ import Field from "@Common/Atoms/Field.vue";
 import LoginOptions from "./LoginOptions.vue";
 import SocialButtons from "../Shared/SocialButtons.vue";
 
-import { LoginSchema } from "./LoginSchema";
+import { useRouter } from "vue-router";
+import { useLogin } from "@Hooks/Auth/useLogin";
+import { LoginSchema } from "@Schemas/LoginSchema";
 import { FormMessages } from "../Shared/FormMessages";
+import type { FormSubmitEvent } from "@primevue/forms";
+
+const router = useRouter();
+const { invoke, error } = useLogin();
+
+const SubmitHandler = async (payload: FormSubmitEvent) => {
+  await invoke(payload.values as any);
+  if (!error.value) router.push("/home");
+};
 
 const responsive = {
   form: "w-full max-w-sm md:max-w-md lg:max-w-l",
@@ -18,7 +29,8 @@ const responsive = {
 </script>
 
 <template>
-  <Form v-slot="$form" :resolver="LoginSchema" :class="`h-fit flex flex-col gap-4 ${responsive.form}`">
+  <Form v-slot="$form" :resolver="LoginSchema" @submit="SubmitHandler"
+    :class="`h-fit flex flex-col gap-4 ${responsive.form}`">
     <Field 
       :error="$form.email?.error?.message"
       :pristine="$form.email?.pristine"
