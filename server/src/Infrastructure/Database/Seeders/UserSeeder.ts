@@ -1,6 +1,6 @@
 import type { Seeder } from "./Seeder";
 import { UserFactory } from "@Database/Factories/UserFactory";
-import type { UserRepository } from "@Repositories/UserRepository";
+import type { UserRepository } from "@Repositories/User/UserRepository";
 
 export class UserSeeder implements Seeder {
   private name: string = "user-seeder";

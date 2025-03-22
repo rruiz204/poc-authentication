@@ -2,7 +2,7 @@ import type { Seeder } from "./Seeder";
 import { Context } from "@Database/Core/Context";
 
 import { UserSeeder } from "./UserSeeder";
-import { UserRepository } from "@Repositories/UserRepository";
+import { UserRepository } from "@Repositories/User/UserRepository";
 
 const userRepository = new UserRepository(Context);
 const userSeeder = new UserSeeder(userRepository);
