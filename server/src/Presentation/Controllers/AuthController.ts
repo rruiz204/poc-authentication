@@ -38,11 +38,11 @@ export class AuthController {
 
   public async forget(req: Request, res: Response): Promise<void> {
     const forget = await this.forgetPasswordUserCase.execute(req.body);
-    res.status(200).json({ message: forget.message });
+    res.status(200).json(forget);
   };
 
   public async reset(req: Request, res: Response): Promise<void> {
     const reset = await this.resetPasswordUseCase.execute(req.body);
-    res.status(200).json({ message: reset.message });
+    res.status(200).json(reset);
   };
 };

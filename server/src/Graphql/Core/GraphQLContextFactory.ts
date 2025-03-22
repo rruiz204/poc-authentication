@@ -6,9 +6,10 @@ export class GraphQLContextFactory {
   public static async build(req: Request): Promise<GraphQLContext> {
     if (req.body.query.includes("IntrospectionQuery")) return {};
 
-    const payload = await AuthMiddleware(req);
+    const auth = await AuthMiddleware(req);
+
     return {
-      user: payload.id,
+      user: auth.id,
     };
   };
 };
