@@ -1,22 +1,23 @@
 import { faker } from "@faker-js/faker";
 import type { Token } from "@prisma/client";
 
-interface FactoryArgs {
+interface BuildArgs {
   id: number;
   token?: string;
   userId: number;
 };
 
 export class TokenFactory {
-  public static async build({ id, token, userId }: FactoryArgs): Promise<Token> {
+  public static async build(args: BuildArgs): Promise<Token> {
+    
     const today = new Date();
     const expires = new Date().setDate(today.getDate() + 30);
 
     return {
-      id: id,
-      token: token || faker.string.uuid(),
+      id: args.id,
+      token: args.token || faker.string.uuid(),
       expires: faker.date.between({ from: today, to: expires }),
-      userId: userId,
+      userId: args.userId,
     };
   };
 };
