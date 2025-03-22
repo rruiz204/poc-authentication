@@ -6,9 +6,7 @@ import { PingRouter } from "@Routers/PingRouter";
 import { AuthRouter } from "@Routers/AuthRouter";
 
 import { expressMiddleware } from "@apollo/server/express4";
-import { LoggerMiddleware } from "@Middlewares/LoggingMiddleware";
 import { ExceptionMiddleware } from "@Middlewares/ExceptionMiddleware";
-
 import { GraphQLContextFactory } from "@Graphql/Core/GraphQLContextFactory";
 
 import type { Express } from "express";
@@ -20,10 +18,6 @@ export class Bootstrap {
   public addRouters(): void {
     this.app.use("/api/auth", AuthRouter);
     this.app.use("/api/ping", PingRouter);
-  };
-
-  public addLogging(): void {
-    this.app.use(LoggerMiddleware);
   };
 
   public addMiddlewares(): void {
