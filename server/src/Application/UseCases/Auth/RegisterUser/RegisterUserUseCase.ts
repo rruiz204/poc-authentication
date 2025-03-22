@@ -3,7 +3,7 @@ import type { UseCase } from "@UseCases/UseCase";
 import type { UnitOfWOrk } from "@Database/Core/UnitOfWork";
 import type { RegisterUserCommand } from "./RegisterUserCommand";
 
-import { JwtService } from "@Services/Jwt/JwtService";
+import { JwtFacade } from "@Services/Jwt/JwtFacade";
 import { HashService } from "@Services/Hash/HashService";
 import { RegisterUserSchema } from "./RegisterUserSchema";
 
@@ -22,7 +22,7 @@ export class RegisterUserUseCase implements UseCase<RegisterUserCommand, AuthDTO
       create: { ...command, password: hashed }
     });
 
-    const token = await JwtService.sign({ id: user.id });
-    return { type: "Bearer", token };
+    const tokens = await JwtFacade.sign({ id: user.id });
+    return { type: "Bearer", ...tokens };
   };
 };
