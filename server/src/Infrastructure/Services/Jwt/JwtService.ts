@@ -1,19 +1,30 @@
+import { JwtHelper } from "./JwtHelper";
 import { SignJWT, jwtVerify } from "jose";
-import { JwtConfig } from "@Configs/JwtConfig";
 import type { JwtPayload } from "./JwtPayload";
 
-export class JwtService {
-  private static encoder = new TextEncoder();
-  private static secret = this.encoder.encode(JwtConfig.JWT_SECRET);
+interface SignArgs {
+  expiration: string;
+  payload: JwtPayload;
+};
 
-  public static async sign(payload: JwtPayload): Promise<string> {
-    return new SignJWT(payload)
+export class JwtService {
+  public static async sign(args: SignArgs): Promise<string> {
+    return new SignJWT(args.payload)
       .setProtectedHeader({ alg: "HS256" })
+      .setExpirationTime(args.expiration)
       .setIssuedAt()
-      .sign(this.secret);
+      .sign(JwtHelper.secret);
+  };
+
+  public static async signAccessToken(payload: JwtPayload) {
+    return this.sign({ payload, expiration: JwtHelper.accessExp });
+  };
+
+  public static async signRefreshToken(payload: JwtPayload) {
+    return this.sign({ payload, expiration: JwtHelper.refreshExp });
   };
 
   public static async verify(token: string): Promise<JwtPayload> {
-    return (await jwtVerify(token, this.secret)).payload as JwtPayload;
+    return (await jwtVerify(token, JwtHelper.secret)).payload as JwtPayload;
   };
 };

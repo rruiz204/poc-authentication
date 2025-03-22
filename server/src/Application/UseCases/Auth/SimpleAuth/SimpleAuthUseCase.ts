@@ -3,7 +3,7 @@ import type { UseCase } from "@UseCases/UseCase";
 import type { UnitOfWOrk } from "@Database/Core/UnitOfWork";
 import type { SimpleAuthCommand } from "./SimpleAuthCommand";
 
-import { JwtService } from "@Services/Jwt/JwtService";
+import { JwtFacade } from "@Services/Jwt/JwtFacade";
 import { HashService } from "@Services/Hash/HashService";
 import { SimpleAuthSchema } from "./SimpleAuthSchema";
 
@@ -19,7 +19,7 @@ export class SimpleAuthUseCase implements UseCase<SimpleAuthCommand, AuthDTO> {
     const verified = await HashService.verify(command.password, existing.password);
     if (!verified) throw new Error("Invalid password");
 
-    const token = await JwtService.sign({ id: existing.id });
-    return { type: "Bearer", token };
+    const tokens = await JwtFacade.sign({ id: existing.id });
+    return { type: "Bearer", ...tokens };
   };
 };
