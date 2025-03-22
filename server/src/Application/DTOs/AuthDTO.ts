@@ -1,4 +1,5 @@
 export interface AuthDTO {
   type: string;
-  token: string;
+  access: string;
+  refresh: string;
 };
