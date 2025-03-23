@@ -8,10 +8,10 @@ interface FacadeResponse {
 
 export class JwtFacade {
   public static async sign(payload: JwtPayload): Promise<FacadeResponse> {
-    const access = await JwtService.signAccessToken(payload);
-    const refresh = await JwtService.signRefreshToken(payload);
-
-    return { access, refresh };
+    return {
+      access: await JwtService.signAccessToken(payload),
+      refresh: await JwtService.signRefreshToken(payload),
+    };
   };
 
   public static async refresh(token: string): Promise<FacadeResponse> {
