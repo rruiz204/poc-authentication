@@ -1,6 +1,6 @@
-import { Seeder } from "@Database/Core/Seeder";
+import { PrismaClient } from "generated/prisma";
+import { Seeder } from "@Database/Seeders/Seeder";
 import { AdminConfig } from "@Configs/AdminConfig";
-import type { PrismaClient } from "@prisma/client";
 
 export class UserSeeder extends Seeder {
   constructor(context: PrismaClient) {
