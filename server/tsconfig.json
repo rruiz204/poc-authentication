@@ -39,6 +39,8 @@
       "@UseCases/*": ["src/Application/UseCases/*"],
       "@DTOs/*": ["src/Application/DTOs/*"],
       "@Graphql/*": ["src/Graphql/*"],
+
+      "@Models/*": ["src/Domain/Models/*"],
     },
   }
 }
