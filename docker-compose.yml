@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  circle-db:
+    image: postgres:14
+    container_name: circle-db
+    ports:
+      - "5432:5432"
+    volumes:
+      - circle-data:/var/lin/postgres/data
+    environment:
+      - POSTGRES_DB=circle
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=admin123
+
+volumes:
+  circle-data:
