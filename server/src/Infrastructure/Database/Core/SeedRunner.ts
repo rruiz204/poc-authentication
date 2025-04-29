@@ -1,11 +1,9 @@
-import type { Seeder } from "./Seeder";
+import { Seeder } from "./Seeder";
 import { Context } from "@Database/Core/Context";
 
-import { UserSeeder } from "./UserSeeder";
-import { UserRepository } from "@Repositories/User/UserRepository";
+import { UserSeeder } from "@Database/Seeders/UserSeeder";
 
-const userRepository = new UserRepository(Context);
-const userSeeder = new UserSeeder(userRepository);
+const userSeeder = new UserSeeder(Context);
 
 const SeedRunner = async (seeders: Seeder[]) => {
   for (const seeder of seeders) {
@@ -16,8 +14,8 @@ const SeedRunner = async (seeders: Seeder[]) => {
     });
 
     if (executed) return;
-
     await seeder.seed();
+
     console.log(`Seeder executed ${name}`);
     await Context.seed.create({ data: { name } });
   };

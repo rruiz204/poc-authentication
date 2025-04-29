@@ -1,23 +1,19 @@
-import type { Seeder } from "./Seeder";
-import { UserFactory } from "@Database/Factories/UserFactory";
-import type { UserRepository } from "@Repositories/User/UserRepository";
+import { Seeder } from "@Database/Core/Seeder";
+import { AdminConfig } from "@Configs/AdminConfig";
+import type { PrismaClient } from "@prisma/client";
 
-export class UserSeeder implements Seeder {
-  private name: string = "user-seeder";
-
-  constructor(private repository: UserRepository) {};
-
-  public getName(): string {
-    return this.name;
+export class UserSeeder extends Seeder {
+  constructor(context: PrismaClient) {
+    super("user-seeder", context);
   };
 
   public async seed(): Promise<void> {
-    const admin = await UserFactory.build({
-      id: 1, name: "admin",
-      email: "admin@admin.com",
-      password: "12345678"
+    await this.context.user.create({
+      data: {
+        name: AdminConfig.ADMIN_NAME,
+        email: AdminConfig.ADMIN_EMAIL,
+        password: AdminConfig.ADMIN_PASSWORD,
+      },
     });
-
-    await this.repository.create({ create: { ...admin } });
   };
 };
