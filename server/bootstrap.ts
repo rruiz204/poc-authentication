@@ -3,7 +3,6 @@ import { json } from "body-parser";
 import { ApolloServer } from "@apollo/server";
 
 import { PingRouter } from "@Routers/PingRouter";
-import { AuthRouter } from "@Routers/AuthRouter";
 
 import { expressMiddleware } from "@apollo/server/express4";
 import { ExceptionMiddleware } from "@Middlewares/ExceptionMiddleware";
@@ -16,7 +15,6 @@ export class Bootstrap {
   constructor(private app: Express) {};
 
   public addRouters(): void {
-    this.app.use("/api/auth", AuthRouter);
     this.app.use("/api/ping", PingRouter);
   };
 
