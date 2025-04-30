@@ -27,17 +27,18 @@
     "baseUrl": ".",
     "paths": {
       "@Repositories/*": ["src/Infrastructure/Repositories/*"],
-      "@Services/*": ["src/Infrastructure/Services/*"],
       "@Database/*": ["src/Infrastructure/Database/*"],
       "@Configs/*": ["src/Infrastructure/Configs/*"],
-      "@Emails/*": ["src/Infrastructure/Emails/*"],
 
       "@Controllers/*": ["src/Presentation/Controllers/*"],
       "@Middlewares/*": ["src/Presentation/Middlewares/*"],
       "@Routers/*": ["src/Presentation/Routers/*"],
 
+      "@Exceptions/*": ["src/Application/Exceptions/*"],
       "@UseCases/*": ["src/Application/UseCases/*"],
       "@DTOs/*": ["src/Application/DTOs/*"],
+
+      "@Models/*": ["src/Domain/Models/*"],
       "@Graphql/*": ["src/Graphql/*"],
     },
   }

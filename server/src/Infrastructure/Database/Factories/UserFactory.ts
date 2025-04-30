@@ -1,26 +1,13 @@
 import { faker } from "@faker-js/faker";
-import type { User } from "@prisma/client";
-import { HashService } from "@Services/Hash/HashService";
-
-interface BuildArgs {
-  id: number;
-  name?: string;
-  email?: string;
-  password: string;
-};
+import type { User } from "@Models/User";
 
 export class UserFactory {
-  public static async build(args: BuildArgs): Promise<User> {
-    const hashed = await HashService.hash(args.password);
-
+  public static async build(user: User.Optional): Promise<User.Entity> {
     return {
-      id: args.id,
-      name: args.name || faker.person.fullName(),
-      email: args.email || faker.internet.email(),
-      password: hashed,
-      active: faker.datatype.boolean({ probability: 0.5 }),
-      createdAt: new Date(),
-      updatedAt: new Date(),
+      id: user.id || faker.number.int({ min: 1, max: 100 }),
+      name: user.email || faker.person.fullName(),
+      email: user.email || faker.internet.email(),
+      password: user.password || faker.internet.password(),
     };
   };
 };
