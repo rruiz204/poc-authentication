@@ -9,9 +9,11 @@ const app = express();
 const server = createServer(app);
 
 const apollo = new Apollo(server);
+
 await apollo.start();
 
 const bootstrap = new Bootstrap(app);
+
 bootstrap.addMiddlewares();
 bootstrap.addRouters();
 bootstrap.addExceptionHandler();

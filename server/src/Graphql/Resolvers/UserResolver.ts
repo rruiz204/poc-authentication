@@ -2,7 +2,7 @@ import { Context } from "@Database/Core/Context";
 import { UnitOfWOrk } from "@Database/Core/UnitOfWork";
 import type { GraphQLContext } from "@Graphql/Core/GraphQLContext";
 
-import type { GetMyUserDTO } from "@UseCases/User/GetMyUser/GetMyUserDTO";
+/* import type { GetMyUserDTO } from "@UseCases/User/GetMyUser/GetMyUserDTO";
 import type { ListUsersDTO } from "@UseCases/User/ListUsers/ListUsersDTO";
 import type { UpdateUserDTO } from "@UseCases/User/UpdateUser/UpdateUserDTO";
 
@@ -31,4 +31,4 @@ export const UserResolver = {
       return await updateUserUseCase.execute(args.input);
     },
   }
-};
+}; */
