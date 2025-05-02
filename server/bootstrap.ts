@@ -1,15 +1,9 @@
 import cors from "cors";
 import { json } from "body-parser";
-import { ApolloServer } from "@apollo/server";
+import type { Express } from "express";
 
 import { PingRouter } from "@Routers/PingRouter";
-
-import { expressMiddleware } from "@apollo/server/express4";
 import { ExceptionMiddleware } from "@Middlewares/ExceptionMiddleware";
-import { GraphQLContextFactory } from "@Graphql/Core/GraphQLContextFactory";
-
-import type { Express } from "express";
-import type { GraphQLContext } from "@Graphql/Core/GraphQLContext";
 
 export class Bootstrap {
   constructor(private app: Express) {};
@@ -19,19 +13,14 @@ export class Bootstrap {
   };
 
   public addMiddlewares(): void {
-    this.app.use(cors());
     this.app.use(json());
+  };
+
+  public addCors(): void {
+    this.app.use(cors());
   };
 
   public addExceptionHandler(): void {
     this.app.use(ExceptionMiddleware);
-  };
-
-  public addApollo(apollo: ApolloServer<GraphQLContext>): void {
-    this.app.use("/graphql", expressMiddleware(apollo, {
-      context: async ({ req }): Promise<GraphQLContext> => {
-        return await GraphQLContextFactory.build(req);
-      }
-    }));
   };
 };
