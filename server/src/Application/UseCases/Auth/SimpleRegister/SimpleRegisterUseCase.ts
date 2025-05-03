@@ -1,15 +1,17 @@
 import type { AuthDTO } from "@DTOs/AuthDTO";
 import type { UseCase } from "@UseCases/UseCase";
-import type { UnitOfWOrk } from "@Database/Core/UnitOfWork";
 import type { SimpleRegisterCommand } from "./SimpleRegisterCommand";
 
+import { inject, injectable } from "inversify";
+import { UnitOfWork } from "@Database/Core/UnitOfWork";
 import { JwtService } from "@Services/Tokens/JwtService";
 import { LogicException } from "@Exceptions/LogicException";
 import { SimpleRegisterSchema } from "./SimpleRegisterSchema";
 import { BcryptService } from "@Services/Password/BcryptService";
 
+@injectable()
 export class SimpleRegisterUseCase implements UseCase<SimpleRegisterCommand, AuthDTO> {
-  constructor(private uow: UnitOfWOrk) {};
+  constructor(@inject(UnitOfWork) private readonly uow: UnitOfWork) {};
 
   public async execute(command: SimpleRegisterCommand): Promise<AuthDTO> {
     let validated = await SimpleRegisterSchema.validate(command);

@@ -2,8 +2,8 @@ import { describe, expect, it, vi, beforeEach } from "vitest";
 
 import type { User } from "@Models/User";
 
-import { Context } from "@Database/Core/Context";
-import { UnitOfWOrk } from "@Database/Core/UnitOfWork";
+import { Inversify } from "@Containers/Inversify";
+import { UnitOfWork } from "@Database/Core/UnitOfWork";
 import { JwtService } from "@Services/Tokens/JwtService";
 import { LogicException } from "@Exceptions/LogicException";
 import { UserFactory } from "@Database/Factories/UserFactory";
@@ -14,10 +14,10 @@ import type { SimpleRegisterCommand } from "@UseCases/Auth/SimpleRegister/Simple
 
 describe("simple register use case", () => {
   let user1: User.Entity;
-
-  const uow = new UnitOfWOrk(Context);
-  const useCase = new SimpleRegisterUseCase(uow);
   let command: SimpleRegisterCommand;
+
+  const uow = Inversify.get(UnitOfWork);
+  const useCase = Inversify.get(SimpleRegisterUseCase);
 
   beforeEach(async () => {
     user1 = await UserFactory.build({ id: 1 });
