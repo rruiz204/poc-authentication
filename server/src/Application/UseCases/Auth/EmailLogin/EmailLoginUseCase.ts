@@ -5,6 +5,7 @@ import type { EmailLoginCommand } from "./EmailLoginCommand";
 import { inject, injectable } from "inversify";
 import { EmailLoginSchema } from "./EmailLoginSchema";
 import { UnitOfWork } from "@Database/Core/UnitOfWork";
+
 import { JwtService } from "@Services/Tokens/JwtService";
 import { LogicException } from "@Exceptions/LogicException";
 import { BcryptService } from "@Services/Password/BcryptService";

@@ -4,9 +4,10 @@ import type { SimpleRegisterCommand } from "./SimpleRegisterCommand";
 
 import { inject, injectable } from "inversify";
 import { UnitOfWork } from "@Database/Core/UnitOfWork";
+import { SimpleRegisterSchema } from "./SimpleRegisterSchema";
+
 import { JwtService } from "@Services/Tokens/JwtService";
 import { LogicException } from "@Exceptions/LogicException";
-import { SimpleRegisterSchema } from "./SimpleRegisterSchema";
 import { BcryptService } from "@Services/Password/BcryptService";
 
 @injectable()
