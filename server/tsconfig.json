@@ -17,6 +17,8 @@
     // Best practices
     "strict": true,
     "skipLibCheck": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
     "noFallthroughCasesInSwitch": true,
 
     // Some stricter flags (disabled by default)
@@ -27,6 +29,7 @@
     "baseUrl": ".",
     "paths": {
       "@Repositories/*": ["src/Infrastructure/Repositories/*"],
+      "@Containers/*": ["src/Infrastructure/Containers/*"],
       "@Services/*": ["src/Infrastructure/Services/*"],
       "@Database/*": ["src/Infrastructure/Database/*"],
       "@Configs/*": ["src/Infrastructure/Configs/*"],
