@@ -1,8 +1,10 @@
 import { PrismaClient } from "generated/prisma";
+import { injectable } from "inversify";
 
 import { UserRepository } from "@Repositories/UserRepository";
 
-export class UnitOfWOrk {
+@injectable()
+export class UnitOfWork {
   public user: UserRepository;
 
   constructor(context: PrismaClient) {
