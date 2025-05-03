@@ -9,43 +9,47 @@ import { LogicException } from "@Exceptions/LogicException";
 import { UserFactory } from "@Database/Factories/UserFactory";
 import { BcryptService } from "@Services/Password/BcryptService";
 
-import { SimpleRegisterUseCase } from "@UseCases/Auth/SimpleRegister/SimpleRegisterUseCase";
-import type { SimpleRegisterCommand } from "@UseCases/Auth/SimpleRegister/SimpleRegisterCommand";
+import { EmailLoginUseCase } from "@UseCases/Auth/EmailLogin/EmailLoginUseCase";
+import type { EmailLoginCommand } from "@UseCases/Auth/EmailLogin/EmailLoginCommand";
 
-describe("simple register use case", () => {
+describe("email login use case", () => {
   let user1: User.Entity;
-  let command: SimpleRegisterCommand;
+  let command: EmailLoginCommand;
 
   const uow = Inversify.get(UnitOfWork);
-  const useCase = Inversify.get(SimpleRegisterUseCase);
+  const useCase = Inversify.get(EmailLoginUseCase);
 
   beforeEach(async () => {
     user1 = await UserFactory.build({ id: 1 });
 
     command = {
-      name: user1.name,
       email: user1.email,
-      active: user1.active,
       password: user1.password,
     };
   });
 
-  it("should register a new user", async () => {
-    vi.spyOn(BcryptService, "hash").mockResolvedValue("fake hash");
+  it("should login a user with email and password", async () => {
     vi.spyOn(JwtService, "sign").mockResolvedValue("fake token");
-
-    vi.spyOn(uow.user, "findByEmail").mockResolvedValue(null);
-    vi.spyOn(uow.user, "create").mockResolvedValue(user1);
+    vi.spyOn(uow.user, "findByEmail").mockResolvedValue(user1);
+    vi.spyOn(BcryptService, "verify").mockResolvedValue(true);
 
     const auth = await useCase.execute(command);
     expect(auth.token).toEqual("fake token");
-    expect(BcryptService.hash).toHaveBeenCalledWith(command.password);
+    expect(BcryptService.verify).toHaveBeenCalledWith(command.password, user1.password);
   });
 
-  it("should throw Redundancy", async () => {
-    vi.spyOn(uow.user, "findByEmail").mockResolvedValue(user1);
+  it("should throw NotFound", async () => {
+    vi.spyOn(uow.user, "findByEmail").mockResolvedValue(null);
 
     await expect(useCase.execute(command))
-      .rejects.toThrowError(LogicException.Redundancy);
+      .rejects.toThrowError(LogicException.NotFound);
+  });
+
+  it("should throw BadCredentials", async () => {
+    vi.spyOn(uow.user, "findByEmail").mockResolvedValue(user1);
+    vi.spyOn(BcryptService, "verify").mockResolvedValue(false);
+
+    await expect(useCase.execute(command))
+      .rejects.toThrowError(LogicException.BadCredentials);
   });
 });
