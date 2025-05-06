@@ -3,6 +3,8 @@ import { json } from "body-parser";
 import type { Express } from "express";
 
 import { PingRouter } from "@Routers/PingRouter";
+import { AuthRouter } from "@Routers/AuthRouter";
+
 import { ExceptionMiddleware } from "@Middlewares/ExceptionMiddleware";
 
 export class Bootstrap {
@@ -10,6 +12,7 @@ export class Bootstrap {
 
   public addRouters(): void {
     this.app.use("/api/ping", PingRouter);
+    this.app.use("/api/auth", AuthRouter);
   };
 
   public addMiddlewares(): void {
