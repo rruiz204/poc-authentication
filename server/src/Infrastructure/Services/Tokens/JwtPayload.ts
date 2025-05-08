@@ -1,5 +1,6 @@
 import type { JWTPayload } from "jose";
 
-export type JwtPayload = JWTPayload & {
+export interface JwtPayload extends JWTPayload {
   id: number;
+  expi: string;
 };

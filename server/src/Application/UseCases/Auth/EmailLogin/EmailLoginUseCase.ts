@@ -23,7 +23,7 @@ export class EmailLoginUseCase implements UseCase<EmailLoginCommand, AuthDTO> {
     const verified = await BcryptService.verify(validated.password, existing.password);
     if (!verified) throw new LogicException.BadCredentials("Bad credentials");
 
-    const token = await JwtService.sign({ id: existing.id });
+    const token = await JwtService.sign({ id: existing.id, expi: "1h" });
     return { type: "Bearer", token: token };
   };
 };
