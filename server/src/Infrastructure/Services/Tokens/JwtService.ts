@@ -8,7 +8,7 @@ export class JwtService {
   public static async sign(payload: JwtPayload): Promise<string> {
     return new SignJWT(payload)
       .setProtectedHeader({ alg: "HS256" })
-      .setExpirationTime(payload.exp || "15m")
+      .setExpirationTime(payload.expi || "15m")
       .setIssuedAt()
       .sign(secret);
   };
