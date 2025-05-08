@@ -7,7 +7,7 @@ export const AuthMiddleware = async (req: Request, res: Response, next: NextFunc
   if (!token) throw new HttpException.Unauthorized("Invalid token");
 
   try {
-    req.user = await JwtService.verify(token);
+    req.user.token = await JwtService.verify(token);
     next();
   } catch {
     throw new HttpException.Unauthorized("Bad token");
